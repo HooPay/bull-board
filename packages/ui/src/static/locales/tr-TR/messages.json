@@ -229,6 +229,48 @@
       "EMPTY": "Bu kuyruğu tüketen hiçbir şey yok.",
       "EMPTY_HINT": "Bir worker sürecinin çalıştığını ve aynı Redis'i işaret ettiğini kontrol edin.",
       "EMPTY_PAUSED": "Bu kuyruk duraklatıldı, bu yüzden worker beklenmiyor."
+    },
+    "FILTERS": {
+      "JOB_ID": "İş kimliği",
+      "ORDER": "Sıralama",
+      "ORDER_DESC": "DESC",
+      "ORDER_ASC": "ASC",
+      "SEARCH": "Arama",
+      "SEARCH_PLACEHOLDER": "örn. data.email ILIKE '%@hoopay.com.br'",
+      "SEARCH_HELP": "Nasıl aranır",
+      "SEARCH_HELP_EQUALS": "Alan bir değere eşit",
+      "SEARCH_HELP_LIKE": "LIKE bir kalıpla eşleşir: % herhangi bir metin, _ tek bir karakterdir. ILIKE büyük/küçük harfi yok sayar.",
+      "SEARCH_HELP_IN": "Değer bir listede",
+      "SEARCH_HELP_NULL": "Alan boş veya yok",
+      "SEARCH_HELP_COMBINE": "Koşulları AND, OR ve NOT ile birleştirin",
+      "SEARCH_HELP_CONTAINS": "Büyük/küçük harfe bakmadan metni içerir",
+      "BUILDER": "Filtre oluşturucu",
+      "BUILDER_MATCH": "Eşleşme",
+      "BUILDER_MATCH_ALL": "Tüm koşullar (VE)",
+      "BUILDER_MATCH_ANY": "Herhangi bir koşul (VEYA)",
+      "BUILDER_FIELD": "Alan, örn. data.email",
+      "BUILDER_OPERATOR": "Operatör",
+      "BUILDER_VALUE": "Değer",
+      "BUILDER_VALUE_LIST": "Virgülle ayrılmış değerler",
+      "BUILDER_REMOVE": "Koşulu kaldır",
+      "BUILDER_ADD": "Koşul ekle",
+      "BUILDER_APPLY": "Uygula",
+      "BUILDER_EMPTY": "Aramayı oluşturmak için bir alan doldurun",
+      "BUILDER_OP_CONTAINS": "içerir",
+      "BUILDER_OP_IS_NULL": "boş",
+      "BUILDER_OP_IS_NOT_NULL": "boş değil",
+      "BUILDER_SAMPLE_TITLE": "Son tamamlanan işin alanları",
+      "BUILDER_SAMPLE_HELP": "Bir alana tıklayarak bu işteki değeriyle koşul olarak ekleyin.",
+      "BUILDER_SAMPLE_EMPTY": "Bu kuyrukta henüz tamamlanmış iş yok.",
+      "BUILDER_SAMPLE_LOADING": "Son tamamlanan iş yükleniyor…",
+      "BUILDER_SAMPLE_REFRESH": "Yenile",
+      "BUILDER_SAMPLE_FILTER": "Alanları filtrele",
+      "CLEAR": "Temizle",
+      "RESULT": "{{count}} eşleşen iş",
+      "RESULT_one": "{{count}} eşleşen iş",
+      "RESULT_other": "{{count}} eşleşen iş",
+      "TRUNCATED": "{{scanned}} iş okunduktan sonra durdu, geri kalanı görmek için aramayı daraltın",
+      "EMPTY_STATE": "Bu filtrelerle eşleşen iş yok."
     }
   },
   "METRICS": {
@@ -342,7 +384,9 @@
       "JOBS": "İşler"
     },
     "GROUP_QUEUES": "Kuyrukları kategoriye göre grupla",
-    "GROUP_QUEUES_HELP": "Kuyruk adlarındaki ayıracı kullanarak Genel Bakış sayfasını daraltılabilir gruplara böler. Kenar çubuğuyla aynı gruplama düzenini kullanır."
+    "GROUP_QUEUES_HELP": "Kuyruk adlarındaki ayıracı kullanarak Genel Bakış sayfasını daraltılabilir gruplara böler. Kenar çubuğuyla aynı gruplama düzenini kullanır.",
+    "GROUP_QUEUES_BY_PREFIX": "Kuyrukları ad önekine göre grupla",
+    "GROUP_QUEUES_BY_PREFIX_HELP": "Checkout-Order ve Checkout-Abandoned gibi aynı kelimeyle başlayan kuyrukları kenar çubuğunda ve Genel Bakış sayfasında daraltılabilir tek bir grupta toplar."
   },
   "RATE_LIMIT": {
     "TITLE": "Hız sınırı",
@@ -422,7 +466,8 @@
     "REDIS_UNAVAILABLE": "bull-board Redis'e bağlanamıyor. Ayrıntılar için panoyu açın.",
     "STATUS_NOT_RETRIABLE": "\"{{status}}\" yeniden denenebilir bir durum değil",
     "WORKERS_DISABLED": "Worker raporlaması devre dışı",
-    "INVALID_METRIC": "Geçersiz metrik"
+    "INVALID_METRIC": "Geçersiz metrik",
+    "INVALID_SEARCH_EXPRESSION": "Geçersiz arama ifadesi"
   },
   "METRICS_HISTORY": {
     "TITLE": "Metrik geçmişi",

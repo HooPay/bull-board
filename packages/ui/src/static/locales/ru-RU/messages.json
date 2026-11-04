@@ -231,6 +231,50 @@
       "EMPTY": "Эту очередь никто не обрабатывает.",
       "EMPTY_HINT": "Убедитесь, что процесс воркера запущен и указывает на тот же Redis.",
       "EMPTY_PAUSED": "Очередь на паузе, поэтому воркеры не ожидаются."
+    },
+    "FILTERS": {
+      "JOB_ID": "ID задачи",
+      "ORDER": "Порядок",
+      "ORDER_DESC": "DESC",
+      "ORDER_ASC": "ASC",
+      "SEARCH": "Поиск",
+      "SEARCH_PLACEHOLDER": "напр. data.email ILIKE '%@hoopay.com.br'",
+      "SEARCH_HELP": "Как искать",
+      "SEARCH_HELP_EQUALS": "Поле равно значению",
+      "SEARCH_HELP_LIKE": "LIKE сравнивает с шаблоном: % — любой текст, _ — один символ. ILIKE не учитывает регистр.",
+      "SEARCH_HELP_IN": "Значение входит в список",
+      "SEARCH_HELP_NULL": "Поле пустое или отсутствует",
+      "SEARCH_HELP_COMBINE": "Объединяйте условия через AND, OR и NOT",
+      "SEARCH_HELP_CONTAINS": "Содержит текст без учёта регистра",
+      "BUILDER": "Конструктор фильтра",
+      "BUILDER_MATCH": "Совпадение",
+      "BUILDER_MATCH_ALL": "Все условия (И)",
+      "BUILDER_MATCH_ANY": "Любое условие (ИЛИ)",
+      "BUILDER_FIELD": "Поле, напр. data.email",
+      "BUILDER_OPERATOR": "Оператор",
+      "BUILDER_VALUE": "Значение",
+      "BUILDER_VALUE_LIST": "Значения через запятую",
+      "BUILDER_REMOVE": "Удалить условие",
+      "BUILDER_ADD": "Добавить условие",
+      "BUILDER_APPLY": "Применить",
+      "BUILDER_EMPTY": "Заполните поле, чтобы составить поиск",
+      "BUILDER_OP_CONTAINS": "содержит",
+      "BUILDER_OP_IS_NULL": "пусто",
+      "BUILDER_OP_IS_NOT_NULL": "не пусто",
+      "BUILDER_SAMPLE_TITLE": "Поля последнего завершённого задания",
+      "BUILDER_SAMPLE_HELP": "Нажмите на поле, чтобы добавить его как условие со значением этого задания.",
+      "BUILDER_SAMPLE_EMPTY": "В этой очереди ещё нет завершённых заданий.",
+      "BUILDER_SAMPLE_LOADING": "Загрузка последнего завершённого задания…",
+      "BUILDER_SAMPLE_REFRESH": "Обновить",
+      "BUILDER_SAMPLE_FILTER": "Фильтр полей",
+      "CLEAR": "Очистить",
+      "RESULT": "Найдено задач: {{count}}",
+      "RESULT_one": "Найдено задач: {{count}}",
+      "RESULT_few": "Найдено задач: {{count}}",
+      "RESULT_many": "Найдено задач: {{count}}",
+      "RESULT_other": "Найдено задач: {{count}}",
+      "TRUNCATED": "остановлено после чтения {{scanned}} задач, уточните поиск, чтобы увидеть остальные",
+      "EMPTY_STATE": "Нет задач, подходящих под эти фильтры."
     }
   },
   "METRICS": {
@@ -348,7 +392,9 @@
       "JOBS": "Задачи"
     },
     "GROUP_QUEUES": "Группировать очереди по категориям",
-    "GROUP_QUEUES_HELP": "Разбивает обзор на сворачиваемые секции по разделителю в именах очередей — та же группировка, что и в боковой панели."
+    "GROUP_QUEUES_HELP": "Разбивает обзор на сворачиваемые секции по разделителю в именах очередей — та же группировка, что и в боковой панели.",
+    "GROUP_QUEUES_BY_PREFIX": "Группировать очереди по префиксу имени",
+    "GROUP_QUEUES_BY_PREFIX_HELP": "Объединяет очереди, начинающиеся с одного слова, например Checkout-Order и Checkout-Abandoned, в одну сворачиваемую группу в боковой панели и обзоре."
   },
   "RATE_LIMIT": {
     "TITLE": "Ограничение скорости",
@@ -428,7 +474,8 @@
     "REDIS_UNAVAILABLE": "bull-board не может подключиться к Redis. Откройте панель, чтобы узнать подробности.",
     "STATUS_NOT_RETRIABLE": "«{{status}}» — не повторяемый статус",
     "WORKERS_DISABLED": "Отчётность по воркерам отключена",
-    "INVALID_METRIC": "Некорректная метрика"
+    "INVALID_METRIC": "Некорректная метрика",
+    "INVALID_SEARCH_EXPRESSION": "Недопустимое выражение поиска"
   },
   "METRICS_HISTORY": {
     "TITLE": "История метрик",

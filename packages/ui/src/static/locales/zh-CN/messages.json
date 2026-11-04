@@ -227,6 +227,46 @@
       "EMPTY": "没有任何进程在消费该队列。",
       "EMPTY_HINT": "请确认 Worker 进程正在运行，并且连接到同一个 Redis。",
       "EMPTY_PAUSED": "该队列已暂停，因此无需 Worker。"
+    },
+    "FILTERS": {
+      "JOB_ID": "任务 ID",
+      "ORDER": "排序",
+      "ORDER_DESC": "DESC",
+      "ORDER_ASC": "ASC",
+      "SEARCH": "搜索",
+      "SEARCH_PLACEHOLDER": "例如 data.email ILIKE '%@hoopay.com.br'",
+      "SEARCH_HELP": "如何搜索",
+      "SEARCH_HELP_EQUALS": "字段等于某个值",
+      "SEARCH_HELP_LIKE": "LIKE 按模式匹配：% 表示任意文本，_ 表示一个字符。ILIKE 不区分大小写。",
+      "SEARCH_HELP_IN": "值在列表中",
+      "SEARCH_HELP_NULL": "字段为空或不存在",
+      "SEARCH_HELP_COMBINE": "用 AND、OR 和 NOT 组合条件",
+      "SEARCH_HELP_CONTAINS": "包含该文本，不区分大小写",
+      "BUILDER": "筛选构建器",
+      "BUILDER_MATCH": "匹配",
+      "BUILDER_MATCH_ALL": "全部条件 (AND)",
+      "BUILDER_MATCH_ANY": "任一条件 (OR)",
+      "BUILDER_FIELD": "字段，例如 data.email",
+      "BUILDER_OPERATOR": "运算符",
+      "BUILDER_VALUE": "值",
+      "BUILDER_VALUE_LIST": "以逗号分隔的值",
+      "BUILDER_REMOVE": "移除条件",
+      "BUILDER_ADD": "添加条件",
+      "BUILDER_APPLY": "应用",
+      "BUILDER_EMPTY": "填写字段即可生成搜索条件",
+      "BUILDER_OP_CONTAINS": "包含",
+      "BUILDER_OP_IS_NULL": "为空",
+      "BUILDER_OP_IS_NOT_NULL": "不为空",
+      "BUILDER_SAMPLE_TITLE": "最近一个已完成任务的字段",
+      "BUILDER_SAMPLE_HELP": "点击字段，将其按该任务的值添加为条件。",
+      "BUILDER_SAMPLE_EMPTY": "此队列还没有已完成的任务。",
+      "BUILDER_SAMPLE_LOADING": "正在加载最近一个已完成的任务…",
+      "BUILDER_SAMPLE_REFRESH": "刷新",
+      "BUILDER_SAMPLE_FILTER": "筛选字段",
+      "CLEAR": "清除",
+      "RESULT": "{{count}} 个匹配任务",
+      "TRUNCATED": "已读取 {{scanned}} 个任务后停止，请缩小搜索范围以查看其余任务",
+      "EMPTY_STATE": "没有与这些筛选条件匹配的任务。"
     }
   },
   "METRICS": {
@@ -336,7 +376,9 @@
       "JOBS": "作业"
     },
     "GROUP_QUEUES": "按类别分组队列",
-    "GROUP_QUEUES_HELP": "根据队列名称中的分隔符将概览拆分为可折叠的区块，与侧边栏使用的分组方式相同。"
+    "GROUP_QUEUES_HELP": "根据队列名称中的分隔符将概览拆分为可折叠的区块，与侧边栏使用的分组方式相同。",
+    "GROUP_QUEUES_BY_PREFIX": "按名称前缀分组队列",
+    "GROUP_QUEUES_BY_PREFIX_HELP": "将以同一单词开头的队列（如 Checkout-Order 和 Checkout-Abandoned）在侧边栏和概览中合并为一个可折叠的分组。"
   },
   "RATE_LIMIT": {
     "TITLE": "速率限制",
@@ -416,7 +458,8 @@
     "REDIS_UNAVAILABLE": "bull-board 无法连接到 Redis。请打开仪表盘查看详情。",
     "STATUS_NOT_RETRIABLE": "\"{{status}}\" 不是可重试的状态",
     "WORKERS_DISABLED": "Worker 信息展示已停用",
-    "INVALID_METRIC": "无效的指标"
+    "INVALID_METRIC": "无效的指标",
+    "INVALID_SEARCH_EXPRESSION": "无效的搜索表达式"
   },
   "METRICS_HISTORY": {
     "TITLE": "指标历史",

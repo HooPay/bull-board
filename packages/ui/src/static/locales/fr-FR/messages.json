@@ -230,6 +230,49 @@
       "EMPTY": "Rien ne consomme cette file.",
       "EMPTY_HINT": "Vérifiez qu'un processus worker tourne et pointe vers le même Redis.",
       "EMPTY_PAUSED": "Cette file est en pause, aucun worker n'est attendu."
+    },
+    "FILTERS": {
+      "JOB_ID": "ID de la tâche",
+      "ORDER": "Ordre",
+      "ORDER_DESC": "DESC",
+      "ORDER_ASC": "ASC",
+      "SEARCH": "Recherche",
+      "SEARCH_PLACEHOLDER": "ex. : data.email ILIKE '%@hoopay.com.br'",
+      "SEARCH_HELP": "Comment rechercher",
+      "SEARCH_HELP_EQUALS": "Le champ est égal à une valeur",
+      "SEARCH_HELP_LIKE": "LIKE compare à un motif : % est n'importe quel texte, _ un seul caractère. ILIKE ignore la casse.",
+      "SEARCH_HELP_IN": "La valeur est dans une liste",
+      "SEARCH_HELP_NULL": "Le champ est vide ou absent",
+      "SEARCH_HELP_COMBINE": "Combinez des conditions avec AND, OR et NOT",
+      "SEARCH_HELP_CONTAINS": "Contient le texte, sans tenir compte de la casse",
+      "BUILDER": "Constructeur de filtre",
+      "BUILDER_MATCH": "Correspondance",
+      "BUILDER_MATCH_ALL": "Toutes les conditions (ET)",
+      "BUILDER_MATCH_ANY": "N'importe quelle condition (OU)",
+      "BUILDER_FIELD": "Champ, ex. data.email",
+      "BUILDER_OPERATOR": "Opérateur",
+      "BUILDER_VALUE": "Valeur",
+      "BUILDER_VALUE_LIST": "Valeurs séparées par des virgules",
+      "BUILDER_REMOVE": "Retirer la condition",
+      "BUILDER_ADD": "Ajouter une condition",
+      "BUILDER_APPLY": "Appliquer",
+      "BUILDER_EMPTY": "Renseignez un champ pour construire la recherche",
+      "BUILDER_OP_CONTAINS": "contient",
+      "BUILDER_OP_IS_NULL": "est vide",
+      "BUILDER_OP_IS_NOT_NULL": "n'est pas vide",
+      "BUILDER_SAMPLE_TITLE": "Champs du dernier job terminé",
+      "BUILDER_SAMPLE_HELP": "Cliquez sur un champ pour l'ajouter comme condition, avec la valeur de ce job.",
+      "BUILDER_SAMPLE_EMPTY": "Cette file n'a encore aucun job terminé.",
+      "BUILDER_SAMPLE_LOADING": "Chargement du dernier job terminé…",
+      "BUILDER_SAMPLE_REFRESH": "Actualiser",
+      "BUILDER_SAMPLE_FILTER": "Filtrer les champs",
+      "CLEAR": "Effacer",
+      "RESULT": "{{count}} tâches trouvées",
+      "RESULT_one": "{{count}} tâche trouvée",
+      "RESULT_many": "{{count}} tâches trouvées",
+      "RESULT_other": "{{count}} tâches trouvées",
+      "TRUNCATED": "arrêté après {{scanned}} tâches lues, affinez la recherche pour voir la suite",
+      "EMPTY_STATE": "Aucune tâche ne correspond à ces filtres."
     }
   },
   "METRICS": {
@@ -345,7 +388,9 @@
       "JOBS": "Tâches"
     },
     "GROUP_QUEUES": "Grouper les files par catégorie",
-    "GROUP_QUEUES_HELP": "Divisez la vue d'ensemble en sections pliables à partir du délimiteur dans les noms de files, le même regroupement que celui utilisé par la barre latérale."
+    "GROUP_QUEUES_HELP": "Divisez la vue d'ensemble en sections pliables à partir du délimiteur dans les noms de files, le même regroupement que celui utilisé par la barre latérale.",
+    "GROUP_QUEUES_BY_PREFIX": "Grouper les files par préfixe du nom",
+    "GROUP_QUEUES_BY_PREFIX_HELP": "Regroupe les files qui commencent par le même mot, comme Checkout-Order et Checkout-Abandoned, dans un groupe repliable de la barre latérale et de la vue d'ensemble."
   },
   "RATE_LIMIT": {
     "TITLE": "Limite de débit",
@@ -425,7 +470,8 @@
     "REDIS_UNAVAILABLE": "bull-board ne parvient pas à joindre Redis. Ouvrez le tableau de bord pour plus de détails.",
     "STATUS_NOT_RETRIABLE": "\"{{status}}\" n'est pas un état relançable",
     "WORKERS_DISABLED": "Le rapport des workers est désactivé",
-    "INVALID_METRIC": "Métrique invalide"
+    "INVALID_METRIC": "Métrique invalide",
+    "INVALID_SEARCH_EXPRESSION": "Expression de recherche invalide"
   },
   "METRICS_HISTORY": {
     "TITLE": "Historique des métriques",

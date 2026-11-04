@@ -371,6 +371,10 @@ export interface IServerAdapter {
 
 export type Pagination = v.InferOutput<typeof schemas.paginationSchema>;
 
+export type JobsOrder = v.InferOutput<typeof schemas.jobsOrderSchema>;
+
+export type JobSearchResult = v.InferOutput<typeof schemas.jobSearchResultSchema>;
+
 export type FormatterField = 'data' | 'returnValue' | 'name' | 'progress';
 
 export type BoardOptions = {
@@ -476,7 +480,15 @@ export type UIConfig = Partial<{
     forceInterval: number;
   }>;
   menu?: { width?: string };
-  overview?: { groupByDelimiter?: boolean };
+  overview?: {
+    groupByDelimiter?: boolean;
+    /**
+     * Initial value of the "group by name prefix" setting: queues registered without a delimiter
+     * are grouped in the sidebar and the overview by the first word of their name, so
+     * `Checkout-Order` and `Checkout-Abandoned` share a `Checkout` group. Default: false.
+     */
+    groupByPrefix?: boolean;
+  };
   jobDetails?: { defaultTab?: JobDetailsTab };
   sortQueues?: boolean;
   hideRedisDetails?: boolean;

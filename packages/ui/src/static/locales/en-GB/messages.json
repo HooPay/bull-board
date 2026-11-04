@@ -229,6 +229,48 @@
       "EMPTY": "Nothing is consuming this queue.",
       "EMPTY_HINT": "Check that a worker process is running and pointed at the same Redis.",
       "EMPTY_PAUSED": "This queue is paused, so no workers are expected."
+    },
+    "FILTERS": {
+      "JOB_ID": "Job ID",
+      "ORDER": "Order",
+      "ORDER_DESC": "DESC",
+      "ORDER_ASC": "ASC",
+      "SEARCH": "Search",
+      "SEARCH_PLACEHOLDER": "e.g. data.email ILIKE '%@hoopay.com.br'",
+      "SEARCH_HELP": "How to search",
+      "SEARCH_HELP_EQUALS": "Field equals a value",
+      "SEARCH_HELP_LIKE": "LIKE matches a pattern: % is any text, _ is one character. ILIKE ignores case.",
+      "SEARCH_HELP_IN": "Value is in a list",
+      "SEARCH_HELP_NULL": "Field is empty or missing",
+      "SEARCH_HELP_COMBINE": "Combine conditions with AND, OR and NOT",
+      "SEARCH_HELP_CONTAINS": "Contains the text, ignoring case",
+      "BUILDER": "Filter builder",
+      "BUILDER_MATCH": "Match",
+      "BUILDER_MATCH_ALL": "All conditions (AND)",
+      "BUILDER_MATCH_ANY": "Any condition (OR)",
+      "BUILDER_FIELD": "Field, e.g. data.email",
+      "BUILDER_OPERATOR": "Operator",
+      "BUILDER_VALUE": "Value",
+      "BUILDER_VALUE_LIST": "Values separated by commas",
+      "BUILDER_REMOVE": "Remove condition",
+      "BUILDER_ADD": "Add condition",
+      "BUILDER_APPLY": "Apply",
+      "BUILDER_EMPTY": "Fill in a field to build the search",
+      "BUILDER_OP_CONTAINS": "contains",
+      "BUILDER_OP_IS_NULL": "is empty",
+      "BUILDER_OP_IS_NOT_NULL": "is not empty",
+      "BUILDER_SAMPLE_TITLE": "Fields of the last completed job",
+      "BUILDER_SAMPLE_HELP": "Click a field to add it as a condition with the value this job has.",
+      "BUILDER_SAMPLE_EMPTY": "This queue has no completed job yet.",
+      "BUILDER_SAMPLE_LOADING": "Loading the last completed job…",
+      "BUILDER_SAMPLE_REFRESH": "Refresh",
+      "BUILDER_SAMPLE_FILTER": "Filter fields",
+      "CLEAR": "Clear",
+      "RESULT": "{{count}} matching jobs",
+      "RESULT_one": "{{count}} matching job",
+      "RESULT_other": "{{count}} matching jobs",
+      "TRUNCATED": "stopped after reading {{scanned}} jobs, narrow the search to see the rest",
+      "EMPTY_STATE": "No jobs match these filters."
     }
   },
   "METRICS": {
@@ -342,7 +384,9 @@
       "JOBS": "Jobs"
     },
     "GROUP_QUEUES": "Group queues by category",
-    "GROUP_QUEUES_HELP": "Split the overview into collapsible sections from the delimiter in queue names, the same grouping the sidebar uses."
+    "GROUP_QUEUES_HELP": "Split the overview into collapsible sections from the delimiter in queue names, the same grouping the sidebar uses.",
+    "GROUP_QUEUES_BY_PREFIX": "Group queues by name prefix",
+    "GROUP_QUEUES_BY_PREFIX_HELP": "Puts queues that start with the same word, like Checkout-Order and Checkout-Abandoned, into one collapsible group in the sidebar and the overview."
   },
   "RATE_LIMIT": {
     "TITLE": "Rate limit",
@@ -422,7 +466,8 @@
     "REDIS_UNAVAILABLE": "bull-board cannot reach Redis. Open the dashboard for details.",
     "STATUS_NOT_RETRIABLE": "\"{{status}}\" is not a retriable status",
     "WORKERS_DISABLED": "Worker reporting is disabled",
-    "INVALID_METRIC": "Invalid metric"
+    "INVALID_METRIC": "Invalid metric",
+    "INVALID_SEARCH_EXPRESSION": "Invalid search expression"
   },
   "METRICS_HISTORY": {
     "TITLE": "Metrics history",

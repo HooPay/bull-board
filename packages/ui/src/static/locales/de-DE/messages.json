@@ -229,6 +229,48 @@
       "EMPTY": "Diese Queue wird von niemandem verarbeitet.",
       "EMPTY_HINT": "Prüfe, ob ein Worker-Prozess läuft und auf dasselbe Redis zeigt.",
       "EMPTY_PAUSED": "Diese Queue ist pausiert, es werden keine Worker erwartet."
+    },
+    "FILTERS": {
+      "JOB_ID": "Job-ID",
+      "ORDER": "Reihenfolge",
+      "ORDER_DESC": "DESC",
+      "ORDER_ASC": "ASC",
+      "SEARCH": "Suche",
+      "SEARCH_PLACEHOLDER": "z. B. data.email ILIKE '%@hoopay.com.br'",
+      "SEARCH_HELP": "So suchen Sie",
+      "SEARCH_HELP_EQUALS": "Feld ist gleich einem Wert",
+      "SEARCH_HELP_LIKE": "LIKE vergleicht mit einem Muster: % steht für beliebigen Text, _ für ein Zeichen. ILIKE ignoriert Groß- und Kleinschreibung.",
+      "SEARCH_HELP_IN": "Wert ist in einer Liste",
+      "SEARCH_HELP_NULL": "Feld ist leer oder fehlt",
+      "SEARCH_HELP_COMBINE": "Bedingungen mit AND, OR und NOT kombinieren",
+      "SEARCH_HELP_CONTAINS": "Enthält den Text, ohne Groß- und Kleinschreibung zu beachten",
+      "BUILDER": "Filter-Baukasten",
+      "BUILDER_MATCH": "Übereinstimmung",
+      "BUILDER_MATCH_ALL": "Alle Bedingungen (UND)",
+      "BUILDER_MATCH_ANY": "Eine beliebige Bedingung (ODER)",
+      "BUILDER_FIELD": "Feld, z. B. data.email",
+      "BUILDER_OPERATOR": "Operator",
+      "BUILDER_VALUE": "Wert",
+      "BUILDER_VALUE_LIST": "Werte durch Kommas getrennt",
+      "BUILDER_REMOVE": "Bedingung entfernen",
+      "BUILDER_ADD": "Bedingung hinzufügen",
+      "BUILDER_APPLY": "Anwenden",
+      "BUILDER_EMPTY": "Füllen Sie ein Feld aus, um die Suche zu erstellen",
+      "BUILDER_OP_CONTAINS": "enthält",
+      "BUILDER_OP_IS_NULL": "ist leer",
+      "BUILDER_OP_IS_NOT_NULL": "ist nicht leer",
+      "BUILDER_SAMPLE_TITLE": "Felder des letzten abgeschlossenen Jobs",
+      "BUILDER_SAMPLE_HELP": "Klicken Sie auf ein Feld, um es mit dem Wert dieses Jobs als Bedingung hinzuzufügen.",
+      "BUILDER_SAMPLE_EMPTY": "Diese Warteschlange hat noch keinen abgeschlossenen Job.",
+      "BUILDER_SAMPLE_LOADING": "Letzter abgeschlossener Job wird geladen…",
+      "BUILDER_SAMPLE_REFRESH": "Aktualisieren",
+      "BUILDER_SAMPLE_FILTER": "Felder filtern",
+      "CLEAR": "Löschen",
+      "RESULT": "{{count}} passende Jobs",
+      "RESULT_one": "{{count}} passender Job",
+      "RESULT_other": "{{count}} passende Jobs",
+      "TRUNCATED": "nach {{scanned}} gelesenen Jobs angehalten, grenzen Sie die Suche ein, um den Rest zu sehen",
+      "EMPTY_STATE": "Keine Jobs entsprechen diesen Filtern."
     }
   },
   "METRICS": {
@@ -342,7 +384,9 @@
       "JOBS": "Jobs"
     },
     "GROUP_QUEUES": "Warteschlangen nach Kategorie gruppieren",
-    "GROUP_QUEUES_HELP": "Teilen Sie die Übersicht mithilfe des Trennzeichens in den Warteschlangennamen in einklappbare Abschnitte auf, dieselbe Gruppierung, die auch die Seitenleiste verwendet."
+    "GROUP_QUEUES_HELP": "Teilen Sie die Übersicht mithilfe des Trennzeichens in den Warteschlangennamen in einklappbare Abschnitte auf, dieselbe Gruppierung, die auch die Seitenleiste verwendet.",
+    "GROUP_QUEUES_BY_PREFIX": "Warteschlangen nach Namenspräfix gruppieren",
+    "GROUP_QUEUES_BY_PREFIX_HELP": "Fasst Warteschlangen, die mit demselben Wort beginnen, etwa Checkout-Order und Checkout-Abandoned, in der Seitenleiste und der Übersicht zu einer einklappbaren Gruppe zusammen."
   },
   "RATE_LIMIT": {
     "TITLE": "Rate-Limit",
@@ -422,7 +466,8 @@
     "REDIS_UNAVAILABLE": "bull-board kann keine Verbindung zu Redis herstellen. Öffnen Sie das Dashboard für Details.",
     "STATUS_NOT_RETRIABLE": "\"{{status}}\" ist kein wiederholbarer Status",
     "WORKERS_DISABLED": "Worker-Berichte sind deaktiviert",
-    "INVALID_METRIC": "Ungültige Metrik"
+    "INVALID_METRIC": "Ungültige Metrik",
+    "INVALID_SEARCH_EXPRESSION": "Ungültiger Suchausdruck"
   },
   "METRICS_HISTORY": {
     "TITLE": "Metrikverlauf",

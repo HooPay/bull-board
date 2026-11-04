@@ -1,10 +1,12 @@
 import type { Status } from '../../typings/app';
+import type { JobFilters } from './useJobFilters';
 
 export interface QueuesQueryParams {
   activeQueue: string | undefined;
   status: Status | undefined;
   page: string;
   jobsPerPage: number;
+  filters?: Partial<JobFilters>;
 }
 
 export const queryKeys = {
@@ -19,6 +21,7 @@ export const queryKeys = {
   jobFlowNode: (queueName: string, jobId: string) => ['jobFlowNode', queueName, jobId] as const,
   metrics: (queueName: string | null) => ['metrics', queueName] as const,
   jobDataSchema: (queueName: string | null) => ['jobDataSchema', queueName] as const,
+  lastCompletedJob: (queueName: string) => ['lastCompletedJob', queueName] as const,
   defaultJobOptions: (queueName: string | null) => ['defaultJobOptions', queueName] as const,
   queueRateLimit: (queueName: string | null) => ['queueRateLimit', queueName] as const,
   historyMetrics: (params: {
