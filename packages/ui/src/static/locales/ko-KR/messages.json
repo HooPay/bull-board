@@ -104,6 +104,7 @@
     "NA": "해당 없음",
     "NO_PROGRESS": "진행 데이터를 사용할 수 없습니다",
     "NO_ERRORS": "기록된 오류가 없습니다",
+    "FAILED_LABEL": "실패",
     "NO_LOGS": "로그를 사용할 수 없습니다",
     "LOGS": {
       "FILTER_PLACEHOLDER": "필터"

@@ -62,6 +62,8 @@
   --sidebar-foreground: #39424b;
   --sidebar-accent: #e2e7ec;
   --sidebar-border: #dde3e9;
+  /* Laid over each open submenu; nested ones stack, so every level reads a step darker. */
+  --sidebar-level-shade: rgba(15, 23, 42, 0.05);
 
   /* Job statuses: the board's domain vocabulary. Hues are long-established
      bull-board semantics, only recalibrated per theme. */
@@ -129,6 +131,7 @@
   --sidebar-foreground: #aab4c0;
   --sidebar-accent: #1d2530;
   --sidebar-border: #232b36;
+  --sidebar-level-shade: rgba(0, 0, 0, 0.24);
 
   /* Job statuses */
   --status-failed: #d95c5c;

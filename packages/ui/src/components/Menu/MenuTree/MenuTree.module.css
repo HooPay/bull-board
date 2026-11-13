@@ -20,6 +20,7 @@
       background-color 100ms ease-in,
       border-left-color 100ms ease-in;
     border-left: 3px solid transparent;
+    flex-wrap: wrap;
 
     &:hover {
       background-color: var(--sidebar-state-hover);
@@ -53,6 +54,7 @@
 
 .groupHeader {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 0.4em;
   width: 100%;
@@ -113,5 +115,43 @@
   color: var(--muted-foreground);
   font-size: 0.8em;
   white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* An open submenu sits on a shade; nested ones stack the shade, so each level is darker. */
+.level {
+  background-color: var(--sidebar-level-shade);
+}
+
+/* Job counts per status on a line of their own under the queue or group name. */
+.dots {
+  display: flex;
+  flex-basis: 100%;
+  flex-wrap: wrap;
+  gap: 0.2rem 0.6rem;
+  margin-top: 0.15rem;
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--sidebar-foreground);
+  font-variant-numeric: tabular-nums;
+}
+
+.groupHeader .dots {
+  padding-left: 1.1em;
+}
+
+.dotCount {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  white-space: nowrap;
+}
+
+.dot {
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 9999px;
   flex-shrink: 0;
 }

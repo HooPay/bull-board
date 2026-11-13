@@ -105,6 +105,7 @@
     "NA": "N/A",
     "NO_PROGRESS": "進捗データがありません",
     "NO_ERRORS": "エラーは記録されていません",
+    "FAILED_LABEL": "失敗",
     "NO_LOGS": "ログがありません",
     "LOGS": {
       "FILTER_PLACEHOLDER": "フィルター"

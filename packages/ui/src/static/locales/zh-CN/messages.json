@@ -104,6 +104,7 @@
     "NA": "无",
     "NO_PROGRESS": "没有可用的进度数据",
     "NO_ERRORS": "没有记录的错误",
+    "FAILED_LABEL": "失败",
     "NO_LOGS": "没有可用的日志",
     "LOGS": {
       "FILTER_PLACEHOLDER": "筛选器"

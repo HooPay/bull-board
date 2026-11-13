@@ -102,3 +102,39 @@ it('drives expand-all and collapse-all from the current group state', async () =
   fireEvent.click(expand);
   await waitFor(() => expect(screen.queryByText('invoices')).toBeTruthy());
 });
+
+it('shows a dot and count per status with jobs, summed on groups', async () => {
+  const counts = (completed: number, failed: number) => ({
+    ...makeQueue('x').counts,
+    completed,
+    failed,
+  });
+  const getQueues = jest.fn(() =>
+    Promise.resolve<GetQueuesResponse>({
+      queues: [
+        makeQueue('Checkout-Order', { delimiter: undefined, counts: counts(1200, 3) }),
+        makeQueue('Checkout-Abandoned', { delimiter: undefined, counts: counts(5, 0) }),
+      ],
+    })
+  );
+  useSettingsStore.setState({ groupByPrefix: true });
+  const { Wrapper } = createWrapper({ api: { getQueues } });
+  render(<Menu />, { wrapper: Wrapper });
+
+  // The group sums its queues and only lists statuses that have jobs.
+  const group = (await screen.findByText('Checkout')).closest('button')!;
+  expect(
+    group.querySelector(`[title="QUEUE.STATUS.COMPLETED: ${(1205).toLocaleString()}"]`)
+  ).toBeTruthy();
+  expect(group.querySelector('[title="QUEUE.STATUS.FAILED: 3"]')).toBeTruthy();
+  expect(group.querySelector('[title^="QUEUE.STATUS.WAITING"]')).toBeNull();
+
+  // Groups may start open; open it only if it is not.
+  if (!screen.queryByText('Order')) fireEvent.click(group);
+  const order = (await screen.findByText('Order')).closest('a')!;
+  expect(order.querySelector('[title="QUEUE.STATUS.FAILED: 3"]')).toBeTruthy();
+  const abandoned = screen.getByText('Abandoned').closest('a')!;
+  expect(abandoned.querySelector('[title^="QUEUE.STATUS.FAILED"]')).toBeNull();
+
+  useSettingsStore.setState({ groupByPrefix: undefined });
+});

@@ -92,7 +92,7 @@ export const DetailsContent = ({ selectedTab, job, actions, status }: DetailsCon
     case 'Error':
       if (stacktrace.length === 0) {
         if (failedReason) {
-          return <div className="error">{failedReason}</div>;
+          return <div className={`error ${s.errorBox}`}>{failedReason}</div>;
         }
 
         return job.deferredFailure ? (
@@ -109,7 +109,9 @@ export const DetailsContent = ({ selectedTab, job, actions, status }: DetailsCon
           {t('JOB.SHOW_ERRORS_BTN')} <ChevronDown />
         </Button>
       ) : (
-        <Highlight language="stacktrace" key="stacktrace" text={stacktrace.join('\n')} />
+        <div className={s.errorBox}>
+          <Highlight language="stacktrace" key="stacktrace" text={stacktrace.join('\n')} />
+        </div>
       );
     case 'Logs':
       return <JobLogs actions={actions} job={job} />;

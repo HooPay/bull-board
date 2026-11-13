@@ -107,6 +107,7 @@
     "NA": "N/D",
     "NO_PROGRESS": "Nenhum dado de progresso disponível",
     "NO_ERRORS": "Nenhum erro registrado",
+    "FAILED_LABEL": "Falhou",
     "NO_LOGS": "Nenhum log disponível",
     "LOGS": {
       "FILTER_PLACEHOLDER": "Filtros"

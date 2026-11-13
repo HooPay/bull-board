@@ -106,6 +106,7 @@
     "NA": "N/A",
     "NO_PROGRESS": "Ingen fremskridtsdata tilgængelig",
     "NO_ERRORS": "Ingen fejl registreret",
+    "FAILED_LABEL": "Fejlede",
     "NO_LOGS": "Ingen logs tilgængelige",
     "LOGS": {
       "FILTER_PLACEHOLDER": "Filtre"

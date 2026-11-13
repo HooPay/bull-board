@@ -107,6 +107,7 @@
     "NA": "N/A",
     "NO_PROGRESS": "Aucune donnée de progression disponible",
     "NO_ERRORS": "Aucune erreur enregistrée",
+    "FAILED_LABEL": "Échec",
     "NO_LOGS": "Aucun journal disponible",
     "LOGS": {
       "FILTER_PLACEHOLDER": "Filtres"

@@ -106,6 +106,7 @@
     "NA": "Mevcut değil",
     "NO_PROGRESS": "İlerleme verisi bulunmuyor.",
     "NO_ERRORS": "Kaydedilmiş hata bulunmuyor.",
+    "FAILED_LABEL": "Başarısız",
     "NO_LOGS": "Kayıt bulunmuyor.",
     "LOGS": {
       "FILTER_PLACEHOLDER": "Kayıtları filtrele"

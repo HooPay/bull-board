@@ -108,6 +108,7 @@
     "NA": "Н/Д",
     "NO_PROGRESS": "Нет данных о прогрессе",
     "NO_ERRORS": "Ошибки не записаны",
+    "FAILED_LABEL": "Ошибка",
     "NO_LOGS": "Логи недоступны",
     "LOGS": {
       "FILTER_PLACEHOLDER": "Фильтры"
