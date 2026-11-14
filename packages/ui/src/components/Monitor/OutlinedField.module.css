@@ -1,0 +1,153 @@
+/* MUI 5 OutlinedInput, size="small" (Bull Monitor's filter fields). */
+.root {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+  height: 40px;
+  border-radius: 4px;
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+.root .input.input {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  height: 40px;
+  margin: 0;
+  padding: 8.5px 14px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  box-shadow: none;
+  color: inherit;
+  font: inherit;
+  font-size: 16px;
+  line-height: 1.4375em;
+  letter-spacing: 0.00938em;
+  outline: 0;
+  appearance: none;
+}
+
+.withAdornment .input.input {
+  padding-right: 0;
+}
+
+.withAdornment {
+  padding-right: 8px;
+}
+
+.label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  max-width: calc(100% - 24px);
+  overflow: hidden;
+  color: var(--muted-foreground);
+  font-size: 16px;
+  line-height: 1.4375em;
+  letter-spacing: 0.00938em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transform: translate(14px, 9px) scale(1);
+  transform-origin: top left;
+  transition:
+    color 200ms cubic-bezier(0, 0, 0.2, 1),
+    transform 200ms cubic-bezier(0, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.floated .label {
+  max-width: calc(133% - 24px);
+  transform: translate(14px, -9px) scale(0.75);
+}
+
+.focused .label {
+  color: var(--primary);
+}
+
+.outline {
+  position: absolute;
+  inset: -5px 0 0;
+  margin: 0;
+  padding: 0 8px;
+  overflow: hidden;
+  border: 1px solid var(--input);
+  border-radius: inherit;
+  text-align: left;
+  pointer-events: none;
+  min-width: 0;
+}
+
+.root:hover .outline {
+  border-color: var(--foreground);
+}
+
+.focused .outline,
+.focused:hover .outline {
+  border: 2px solid var(--primary);
+}
+
+.legend {
+  float: unset;
+  display: block;
+  width: auto;
+  max-width: 0.01px;
+  height: 11px;
+  padding: 0;
+  overflow: hidden;
+  font-size: 0.75em;
+  visibility: hidden;
+  white-space: nowrap;
+  transition: max-width 50ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.legend > span {
+  display: inline-block;
+  padding: 0 5px;
+}
+
+.floated .legend {
+  max-width: 100%;
+  transition: max-width 100ms cubic-bezier(0, 0, 0.2, 1) 50ms;
+}
+
+.adornment {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+/* Select: room for the arrow, which turns like MUI's ArrowDropDown. */
+.select .input.input {
+  padding-right: 32px;
+  cursor: pointer;
+}
+
+.select .input option {
+  background: var(--popover);
+  color: var(--foreground);
+}
+
+.arrow {
+  position: absolute;
+  right: 7px;
+  top: calc(50% - 12px);
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+  pointer-events: none;
+}
+
+/* As MUI does, the placeholder only shows once the label has floated out of the way. */
+.root:not(.floated) .input::placeholder {
+  opacity: 0;
+}
+
+.input::placeholder {
+  color: var(--muted-foreground);
+  opacity: 1;
+}

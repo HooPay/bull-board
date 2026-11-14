@@ -1,79 +1,90 @@
+/* Bull Monitor's drawer list: dense ListItems, white 16px names, status pills and a 3px bar. */
 .menu {
   list-style: none;
   padding: 0;
   margin: 0;
-  --level: 1;
-  > li + li {
-    border-top: 1px solid var(--sidebar-border);
+  --level: 0;
+}
+
+/* An open group sits on a shade; nested groups stack it, so every level reads a step darker. */
+.level {
+  background-color: var(--sidebar-level-shade);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  padding: 6px 8px 6px calc(16px + 12px * var(--level));
+  color: inherit;
+  text-decoration: none;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.08);
   }
 
-  a {
-    color: inherit;
-    text-decoration: none;
-    display: flex;
-    align-items: baseline;
-    gap: 0.4em;
-    padding: 0.5rem 1rem;
-    overflow: hidden;
-    font-size: 0.9rem;
-    transition:
-      background-color 100ms ease-in,
-      border-left-color 100ms ease-in;
-    border-left: 3px solid transparent;
-    flex-wrap: wrap;
-
-    &:hover {
-      background-color: var(--sidebar-state-hover);
-      border-left-color: var(--sidebar-border);
-    }
-
-    &.active {
-      background-color: var(--sidebar-state-selected);
-      color: var(--sidebar-state-selected-foreground);
-      border-left-color: var(--sidebar-primary);
-    }
-
-    &.active:hover {
-      background-color: var(--sidebar-state-selected-hover);
-    }
+  &.active {
+    background-color: rgba(103, 58, 183, 0.16);
   }
 
-  .queueName {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    min-width: 0;
-  }
-  .level {
-    > li > a,
-    > li > .groupHeader {
-      padding-left: calc(1.75rem * var(--level, 0));
-    }
+  &.active:hover {
+    background-color: rgba(103, 58, 183, 0.24);
   }
 }
 
+.itemIcon {
+  display: inline-flex;
+  flex-shrink: 0;
+  min-width: 32px;
+  color: #fff;
+}
+
+.itemIcon > svg {
+  width: 24px;
+  height: 24px;
+}
+
+.itemText {
+  flex: 1;
+  min-width: 0;
+}
+
+.queueName {
+  display: block;
+  overflow: hidden;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* A group: MUI ListSubheader look, clickable to open and close its queues. */
 .groupHeader {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.4em;
+  display: block;
   width: 100%;
-  padding: 0.5rem 1rem;
+  padding: 8px 8px 8px calc(16px + 12px * var(--level));
+  border: 0;
   background: none;
-  border: none;
-  border-left: 3px solid transparent;
-  color: var(--muted-foreground);
+  color: inherit;
   font-family: inherit;
-  font-size: 0.75rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
+  text-align: left;
   cursor: pointer;
-  transition: background-color 100ms ease-in;
+  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .groupHeader:hover {
-  background-color: var(--sidebar-state-hover);
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.groupTitle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--muted-foreground);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
 }
 
 .groupName {
@@ -85,12 +96,8 @@
 
 .groupCount {
   margin-left: auto;
-  padding-left: 0.5em;
-  font-size: 0.7rem;
+  font-size: 12px;
   font-weight: 400;
-  text-transform: none;
-  letter-spacing: 0;
-  opacity: 0.6;
   white-space: nowrap;
   flex-shrink: 0;
 }
@@ -99,9 +106,13 @@
   color: var(--status-paused);
 }
 
+.groupChips {
+  padding-left: 20px;
+}
+
 .chevron {
-  width: 0.7em;
-  height: 0.7em;
+  width: 14px;
+  height: 14px;
   flex-shrink: 0;
   transform: rotate(-90deg);
   transition: transform 150ms ease;
@@ -109,49 +120,4 @@
 
 .chevronOpen {
   transform: rotate(0deg);
-}
-
-.isPaused {
-  color: var(--muted-foreground);
-  font-size: 0.8em;
-  white-space: nowrap;
-  flex-shrink: 0;
-}
-
-/* An open submenu sits on a shade; nested ones stack the shade, so each level is darker. */
-.level {
-  background-color: var(--sidebar-level-shade);
-}
-
-/* Job counts per status on a line of their own under the queue or group name. */
-.dots {
-  display: flex;
-  flex-basis: 100%;
-  flex-wrap: wrap;
-  gap: 0.2rem 0.6rem;
-  margin-top: 0.15rem;
-  font-size: 0.7rem;
-  font-weight: 400;
-  letter-spacing: 0;
-  text-transform: none;
-  color: var(--sidebar-foreground);
-  font-variant-numeric: tabular-nums;
-}
-
-.groupHeader .dots {
-  padding-left: 1.1em;
-}
-
-.dotCount {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.25rem;
-  white-space: nowrap;
-}
-
-.dot {
-  width: 0.45rem;
-  height: 0.45rem;
-  border-radius: 9999px;
-  flex-shrink: 0;
 }

@@ -10,7 +10,10 @@
     "EXPAND_SIDEBAR": "Udvid sidepanel",
     "COLLAPSE_SIDEBAR": "Skjul sidepanel",
     "METRICS_HISTORY": "Metrikhistorik",
-    "SCHEDULERS": "Planlægninger"
+    "SCHEDULERS": "Planlægninger",
+    "FILTER": "Filtrér",
+    "SORT": "Sortér",
+    "SORT_NONE": "ingen"
   },
   "DASHBOARD": {
     "JOBS_COUNT_one": "{{count}} Job",
@@ -271,7 +274,15 @@
       "RESULT_one": "{{count}} matchende job",
       "RESULT_other": "{{count}} matchende jobs",
       "TRUNCATED": "stoppede efter {{scanned}} læste jobs, indsnævr søgningen for at se resten",
-      "EMPTY_STATE": "Ingen jobs matcher disse filtre."
+      "EMPTY_STATE": "Ingen jobs matcher disse filtre.",
+      "TIP_BEFORE": "Søgningen bruger ",
+      "TIP_MIDDLE": " samt LIKE, IN og IS NULL. Se ",
+      "TIP_EXAMPLES": "eksemplerne",
+      "TIP_CLOSE": "Luk"
+    },
+    "TABS": {
+      "ADD": "Ny fane",
+      "CLOSE": "Luk fane"
     }
   },
   "METRICS": {
@@ -562,5 +573,44 @@
       "LIMIT": "Maks. kørsler",
       "END_DATE": "Slutdato"
     }
+  },
+  "MONITOR": {
+    "COLUMNS": {
+      "ACTIONS": "Handlinger",
+      "ID": "ID",
+      "STATUS": "Status",
+      "NAME": "Navn",
+      "TIMESTAMP": "Oprettet",
+      "DELAY": "Forsinkelse",
+      "TIME": "Tid",
+      "ATTEMPTS": "Forsøg",
+      "PROGRESS": "Fremskridt"
+    },
+    "STEP_QUEUED": "I kø",
+    "STEP_DELAYED": "Forsinket",
+    "STEP_PROCESSED": "Behandlet",
+    "STEP_FINISHED": "Afsluttet",
+    "STEP_FAILED": "Fejlede",
+    "MORE": "Mere",
+    "SAVE_JSON": "Gem som JSON",
+    "EXPORT_JSON": "Eksportér jobs som JSON",
+    "OPEN_JOB": "Åbn job",
+    "CONFIRM_RETRY_SELECTED": "Prøv de valgte jobs igen ({{count}})?",
+    "CONFIRM_DELETE_SELECTED": "Slet de valgte jobs ({{count}})?",
+    "SELECTED": "Valgt: {{count}}",
+    "RETRY_SELECTED": "Prøv valgte igen",
+    "DELETE_SELECTED": "Slet valgte",
+    "CLEAN": "Ryd",
+    "SELECT_ALL": "Vælg alle",
+    "SELECT_JOB": "Vælg job {{id}}",
+    "DELETE_JOB": "Slet job",
+    "INFO": "Detaljer",
+    "JOB_DATA": "Jobdata",
+    "RETURN_VALUE": "Returværdi",
+    "STACKTRACE": "Stacktrace",
+    "PER_PAGE": "Pr. side",
+    "RANGE": "{{from}}–{{to}} af {{count}}",
+    "PREV_PAGE": "Forrige side",
+    "NEXT_PAGE": "Næste side"
   }
 }

@@ -16,16 +16,18 @@
 :root {
   /* Layout */
   --header-height: 64px;
-  --menu-width: 264px;
-  --body-padding: 2rem;
+  --menu-width: 260px;
+  --body-padding: 8px;
   --card-padding: 1rem;
 
   /* Type */
-  --font-sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  /* HooPay fork: Bull Monitor's look (MUI defaults: Roboto, 4px radius, 8px spacing). */
+  --font-sans: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  --font-title: 'Oswald', 'Roboto Condensed', 'Arial Narrow', sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* Shape */
-  --radius: 0.375rem;
+  --radius: 4px;
 
   /* Elevation. One recipe for every floating surface: menus, popovers, toasts and both
      kinds of tooltip, so nothing reads as a different layer of the same board. */
@@ -40,10 +42,13 @@
   --foreground: #20262c;
   --card: #ffffff;
   --popover: #ffffff;
+  --appbar: #673ab7;
+  --table-border: rgba(224, 224, 224, 1);
+  --primary-hover: #512da8;
 
   /* Interaction */
-  --primary: #0f6f64;
-  --primary-foreground: #f0faf8;
+  --primary: #673ab7;
+  --primary-foreground: #ffffff;
   --secondary: #e7ecef;
   --secondary-foreground: #39424b;
   --muted: #eaeef2;
@@ -67,14 +72,15 @@
 
   /* Job statuses: the board's domain vocabulary. Hues are long-established
      bull-board semantics, only recalibrated per theme. */
-  --status-failed: #ef4444;
-  --status-completed: #16a34a;
-  --status-waiting: #d97706;
-  --status-waiting-children: #f97316;
-  --status-prioritized: #c026d3;
-  --status-active: #2563eb;
-  --status-delayed: #7c3aed;
-  --status-paused: #6b6560;
+  /* Bull Monitor's status map (MUI palette): the same in both themes. */
+  --status-failed: #f44336;
+  --status-completed: #4caf50;
+  --status-waiting: #673ab7;
+  --status-waiting-children: #ff9800;
+  --status-prioritized: #9e9e9e;
+  --status-active: #00bcd4;
+  --status-delayed: #1565c0;
+  --status-paused: #757575;
 
   /* Latency percentile ramps: hue carries the metric (run vs wait), and each ramp runs from a
      pale, low-contrast p50 up to a dark, high-contrast p99, so severity reads independently
@@ -104,44 +110,48 @@
 }
 
 .dark-mode {
-  /* Core surfaces */
-  --background: #151a21;
-  --foreground: #d5dce4;
-  --card: #1c232d;
-  --popover: #202834;
+  /* Bull Monitor dark theme: MUI dark palette, deepPurple primary, Paper elevation overlays
+     (#121212 page, #1e1e1e cards, #272727 app bar, #2e2e2e menus). */
+  --background: #121212;
+  --foreground: #ffffff;
+  --card: #1e1e1e;
+  --popover: #2e2e2e;
+  --appbar: #272727;
 
   /* Interaction */
-  --primary: #3ecfb2;
-  --primary-foreground: #0c1f1b;
-  --secondary: #242d39;
-  --secondary-foreground: #b9c2cd;
-  --muted: #232b36;
-  --muted-foreground: #8b96a5;
-  --accent: #20293a;
-  --accent-foreground: #d5dce4;
-  --destructive: #e0635c;
-  --destructive-foreground: #1d0f0e;
+  --primary: #673ab7;
+  --primary-foreground: #ffffff;
+  --primary-hover: #512da8;
+  --secondary: rgba(255, 255, 255, 0.16);
+  --secondary-foreground: #ffffff;
+  --muted: #282c34;
+  --muted-foreground: rgba(255, 255, 255, 0.7);
+  --accent: rgba(255, 255, 255, 0.08);
+  --accent-foreground: #ffffff;
+  --destructive: #f44336;
+  --destructive-foreground: #ffffff;
 
   /* Strokes */
-  --border: #2a3340;
-  --input: #333e4d;
+  --border: rgba(255, 255, 255, 0.12);
+  --input: rgba(255, 255, 255, 0.23);
+  --table-border: #515151;
 
   /* Sidebar */
-  --sidebar: #12171d;
-  --sidebar-foreground: #aab4c0;
-  --sidebar-accent: #1d2530;
-  --sidebar-border: #232b36;
+  --sidebar: #121212;
+  --sidebar-foreground: #ffffff;
+  --sidebar-accent: rgba(255, 255, 255, 0.08);
+  --sidebar-border: rgba(255, 255, 255, 0.12);
   --sidebar-level-shade: rgba(0, 0, 0, 0.24);
 
   /* Job statuses */
-  --status-failed: #d95c5c;
-  --status-completed: #34a85e;
-  --status-waiting: #c9a13a;
-  --status-waiting-children: #dd955a;
-  --status-prioritized: #c366d1;
-  --status-active: #5b8ad7;
-  --status-delayed: #9374dc;
-  --status-paused: #a29e96;
+  --status-failed: #f44336;
+  --status-completed: #4caf50;
+  --status-waiting: #673ab7;
+  --status-waiting-children: #ff9800;
+  --status-prioritized: #9e9e9e;
+  --status-active: #00bcd4;
+  --status-delayed: #1565c0;
+  --status-paused: #757575;
 
   /* Ramp direction flips against a dark background: "calm" means dim and close to the
      background, "severe" means bright and saturated, the opposite of light mode's push
@@ -213,7 +223,7 @@
      translucent, so one token works on the page, on a card and inside a popover alike; an
      opaque neutral can only be tuned against one of those three surfaces and disappears on
      the others. */
-  --state-hover: color-mix(in srgb, var(--primary) 8%, transparent);
+  --state-hover: rgba(127, 127, 127, 0.12);
   --state-selected: color-mix(in srgb, var(--primary) 16%, transparent);
   --state-selected-hover: color-mix(in srgb, var(--primary) 24%, transparent);
   --state-selected-foreground: var(--primary);

@@ -36,6 +36,13 @@ interface SettingsState {
   overview: { grouped?: boolean };
   /** Group queues by the first word of their name. Undefined follows uiConfig.overview.groupByPrefix. */
   groupByPrefix?: boolean;
+  /** Sidebar order, as in Bull Monitor: '' keeps the board's order, a status sorts by its count. */
+  menuSortStatus?: string;
+  /** Bull Monitor's tabs: each open tab is a queue page URL; `activeTab` indexes them. */
+  tabs?: string[];
+  activeTab?: number;
+  /** The jsonata tip above the search was dismissed. */
+  hideSearchTip?: boolean;
   sidebarCollapsed: boolean;
   /** One global preference for which latency-chart series are visible, shared by the queue
    *  detail page and the metrics history page rather than tracked per queue. */
@@ -46,7 +53,7 @@ interface SettingsState {
   setSettings: (settings: Partial<Omit<SettingsState, 'setSettings'>>) => void;
 }
 
-export const SETTINGS_VERSION = 3;
+export const SETTINGS_VERSION = 4;
 
 type LegacySettings = Partial<SettingsState> & { darkMode?: boolean };
 
@@ -76,6 +83,12 @@ export function migrateSettings(persisted: unknown, version: number): SettingsSt
     };
   }
 
+  // HooPay fork: the board now looks like Bull Monitor, whose default is dark. Move users still on
+  // the old "follow the system" default; an explicit light or dark choice is kept.
+  if (version < 4 && settings?.theme === 'system') {
+    settings = { ...settings, theme: 'dark' };
+  }
+
   return settings as SettingsState;
 }
 
@@ -95,7 +108,7 @@ export const useSettingsStore = create<SettingsState>()(
       collapseMetrics: false,
       defaultCollapseDepth: 3,
       useCollapsibleJson: true,
-      theme: 'system',
+      theme: 'dark',
       showEnvBadge: true,
       defaultJobTab: DEFAULT_JOB_TAB,
       sortQueues: false,

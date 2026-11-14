@@ -1,55 +1,55 @@
+import { Menu as BaseMenu } from '@base-ui/react/menu';
+import type { AppQueue } from '@bull-board/api/typings/app';
 import cn from 'clsx';
+import { ArrowDownWideNarrow, Check } from 'lucide-react';
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
-import { useShallow } from 'zustand/react/shallow';
 import { useGroupByPrefix } from '../../hooks/useGroupByPrefix';
-import { useMenuState } from '../../hooks/useMenuState';
 import { useQueues } from '../../hooks/useQueues';
 import { useQueueSearch } from '../../hooks/useQueueSearch';
 import { useSettingsStore } from '../../hooks/useSettings';
 import { useUIConfig } from '../../hooks/useUIConfig';
 import { links } from '../../utils/links';
-import { collectGroupPaths, toTree } from '../../utils/toTree';
-import { ChevronDown } from '../Icons/ChevronDown';
+import { toTree } from '../../utils/toTree';
+import { DropdownContent } from '../DropdownContent/DropdownContent';
 import { GitHub } from '../Icons/GitHub';
-import { SearchIcon } from '../Icons/Search';
+import { IconButton } from '../Monitor/IconButton';
+import { OutlinedInput } from '../Monitor/OutlinedField';
+import { MONITOR_STATUS_ORDER } from '../Monitor/StatusCounts';
 import { MenuTree } from './MenuTree/MenuTree';
 import s from './Menu.module.css';
 
-const isMac =
-  typeof navigator !== 'undefined' && /Mac|iPhone|iPod|iPad/.test(navigator.platform || '');
-const searchShortcut = isMac ? '⌘K' : 'Ctrl K';
+/** Bull Monitor sorts the drawer by one status count, highest first. */
+function sortByStatus(queues: AppQueue[], status: string): AppQueue[] {
+  if (!status) return queues;
+  const count = (queue: AppQueue) => queue.counts[status as keyof AppQueue['counts']] ?? 0;
+  return [...queues].sort((a, b) => count(b) - count(a));
+}
 
 export const Menu = () => {
   const { t } = useTranslation();
   const { queues } = useQueues();
   const sortQueues = useSettingsStore((state) => state.sortQueues);
-  const groupByPrefix = useGroupByPrefix();
   const sidebarCollapsed = useSettingsStore((state) => state.sidebarCollapsed);
+  const menuSortStatus = useSettingsStore((state) => state.menuSortStatus ?? '');
+  const setSettings = useSettingsStore((state) => state.setSettings);
+  const groupByPrefix = useGroupByPrefix();
   const { searchTerm, setSearchTerm } = useQueueSearch();
   const { hasHistoryProvider = false } = useUIConfig();
 
-  const expandAll = useMenuState((state) => state.expandAll);
-  const collapseAll = useMenuState((state) => state.collapseAll);
+  const tree = useMemo(() => {
+    const visible =
+      queues?.filter((queue) =>
+        queue.name?.toLowerCase().includes((searchTerm ?? '').toLowerCase())
+      ) || [];
+    return toTree(sortByStatus(visible, menuSortStatus), sortQueues && !menuSortStatus, {
+      groupByPrefix,
+    });
+  }, [queues, searchTerm, menuSortStatus, sortQueues, groupByPrefix]);
 
-  const tree = toTree(
-    queues?.filter((queue: any) =>
-      queue.name?.toLowerCase().includes(searchTerm?.toLowerCase() as string)
-    ) || [],
-    sortQueues,
-    { groupByPrefix }
-  );
-
-  const groupPaths = useMemo(() => collectGroupPaths(tree), [tree]);
-  const hasGroups = groupPaths.length > 0;
-  const { allExpanded, allCollapsed } = useMenuState(
-    useShallow((state) => ({
-      allExpanded: hasGroups && groupPaths.every((p) => state.isMenuOpen(p)),
-      allCollapsed: hasGroups && groupPaths.every((p) => !state.isMenuOpen(p)),
-    }))
-  );
   const showJobSchedulers = queues?.some((queue) => queue.jobSchedulerCount > 0);
+  const sortOptions = ['', ...MONITOR_STATUS_ORDER];
 
   return (
     <aside
@@ -57,57 +57,63 @@ export const Menu = () => {
       className={cn(s.aside, sidebarCollapsed && s.collapsed)}
       aria-hidden={sidebarCollapsed}
     >
-      <div className={s.menuHeader}>
-        <span className={s.secondary}>{t('MENU.QUEUES')}</span>
-        {hasGroups && (
-          <span className={s.toggleActions}>
-            <button
-              className={s.toggleBtn}
-              onClick={() => expandAll(groupPaths)}
-              title={t('MENU.EXPAND_ALL')}
-              disabled={allExpanded}
-            >
-              <ChevronDown className={s.expandIcon} />
-            </button>
-            <button
-              className={s.toggleBtn}
-              onClick={() => collapseAll(groupPaths)}
-              title={t('MENU.COLLAPSE_ALL')}
-              disabled={allCollapsed}
-            >
-              <ChevronDown className={s.collapseIcon} />
-            </button>
-          </span>
-        )}
-      </div>
-      <div className={s.searchWrapper}>
-        <SearchIcon />
-        <input
-          className={s.search}
-          type="search"
-          id="search-queues"
-          placeholder={t('MENU.SEARCH_INPUT_PLACEHOLDER')}
+      <div className={s.utils}>
+        <OutlinedInput
+          className={s.filter}
+          label={t('MENU.FILTER')}
           value={searchTerm}
-          onChange={({ currentTarget }) => setSearchTerm(currentTarget.value)}
+          onChange={setSearchTerm}
+          inputProps={{ id: 'search-queues', type: 'search' }}
         />
-        <kbd className={s.searchShortcut} aria-hidden="true">
-          {searchShortcut}
-        </kbd>
+        <BaseMenu.Root>
+          <BaseMenu.Trigger
+            render={
+              <IconButton size="large" label={t('MENU.SORT')}>
+                <ArrowDownWideNarrow />
+              </IconButton>
+            }
+          />
+          <BaseMenu.Portal>
+            <BaseMenu.Positioner align="start" style={{ zIndex: 1300 }}>
+              <DropdownContent>
+                {sortOptions.map((status) => (
+                  <BaseMenu.Item
+                    key={status || 'none'}
+                    onClick={() => setSettings({ menuSortStatus: status })}
+                  >
+                    {status === menuSortStatus ? <Check /> : <span className={s.sortSpacer} />}
+                    {status ? `${status} ⬇️` : t('MENU.SORT_NONE')}
+                  </BaseMenu.Item>
+                ))}
+              </DropdownContent>
+            </BaseMenu.Positioner>
+          </BaseMenu.Portal>
+        </BaseMenu.Root>
       </div>
-      {hasHistoryProvider && (
-        <NavLink
-          to={links.metricsHistory()}
-          className={s.navLink}
-          activeClassName={s.navLinkActive}
-        >
-          {t('MENU.METRICS_HISTORY')}
-        </NavLink>
+
+      {(hasHistoryProvider || showJobSchedulers) && (
+        <div className={s.navLinks}>
+          {hasHistoryProvider && (
+            <NavLink
+              to={links.metricsHistory()}
+              className={s.navLink}
+              activeClassName={s.navLinkActive}
+            >
+              {t('MENU.METRICS_HISTORY')}
+            </NavLink>
+          )}
+          {showJobSchedulers && (
+            <NavLink
+              to={links.jobSchedulers()}
+              className={s.navLink}
+              activeClassName={s.navLinkActive}
+            >
+              {t('MENU.SCHEDULERS')}
+            </NavLink>
+          )}
+        </div>
       )}
-      {showJobSchedulers && (
-        <NavLink to={links.jobSchedulers()} className={s.navLink} activeClassName={s.navLinkActive}>
-          {t('MENU.SCHEDULERS')}
-        </NavLink>
-      )}
+
       <nav className={s.navWrapper}>
         <MenuTree tree={tree} />
       </nav>

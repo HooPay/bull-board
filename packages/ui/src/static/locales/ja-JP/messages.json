@@ -10,7 +10,10 @@
     "EXPAND_SIDEBAR": "サイドバーを展開",
     "COLLAPSE_SIDEBAR": "サイドバーを折りたたむ",
     "METRICS_HISTORY": "メトリクス履歴",
-    "SCHEDULERS": "スケジューラー"
+    "SCHEDULERS": "スケジューラー",
+    "FILTER": "フィルター",
+    "SORT": "並べ替え",
+    "SORT_NONE": "なし"
   },
   "DASHBOARD": {
     "JOBS_COUNT": "{{count}} ジョブ",
@@ -268,7 +271,15 @@
       "CLEAR": "クリア",
       "RESULT": "{{count}} 件一致",
       "TRUNCATED": "{{scanned}} 件を読み込んだ時点で停止しました。残りを表示するには検索を絞り込んでください",
-      "EMPTY_STATE": "これらのフィルターに一致するジョブはありません。"
+      "EMPTY_STATE": "これらのフィルターに一致するジョブはありません。",
+      "TIP_BEFORE": "検索は ",
+      "TIP_MIDDLE": " に LIKE・IN・IS NULL を加えたものです。",
+      "TIP_EXAMPLES": "例を見る",
+      "TIP_CLOSE": "閉じる"
+    },
+    "TABS": {
+      "ADD": "タブを追加",
+      "CLOSE": "タブを閉じる"
     }
   },
   "METRICS": {
@@ -556,5 +567,44 @@
       "LIMIT": "最大実行回数",
       "END_DATE": "終了日"
     }
+  },
+  "MONITOR": {
+    "COLUMNS": {
+      "ACTIONS": "操作",
+      "ID": "ID",
+      "STATUS": "ステータス",
+      "NAME": "名前",
+      "TIMESTAMP": "作成日時",
+      "DELAY": "遅延",
+      "TIME": "処理時間",
+      "ATTEMPTS": "試行回数",
+      "PROGRESS": "進捗"
+    },
+    "STEP_QUEUED": "キュー投入",
+    "STEP_DELAYED": "遅延",
+    "STEP_PROCESSED": "処理開始",
+    "STEP_FINISHED": "完了",
+    "STEP_FAILED": "失敗",
+    "MORE": "その他",
+    "SAVE_JSON": "JSON として保存",
+    "EXPORT_JSON": "ジョブを JSON でエクスポート",
+    "OPEN_JOB": "ジョブを開く",
+    "CONFIRM_RETRY_SELECTED": "選択したジョブ ({{count}}) を再試行しますか？",
+    "CONFIRM_DELETE_SELECTED": "選択したジョブ ({{count}}) を削除しますか？",
+    "SELECTED": "選択中: {{count}}",
+    "RETRY_SELECTED": "選択したジョブを再試行",
+    "DELETE_SELECTED": "選択したジョブを削除",
+    "CLEAN": "クリーン",
+    "SELECT_ALL": "すべて選択",
+    "SELECT_JOB": "ジョブ {{id}} を選択",
+    "DELETE_JOB": "ジョブを削除",
+    "INFO": "詳細",
+    "JOB_DATA": "ジョブデータ",
+    "RETURN_VALUE": "戻り値",
+    "STACKTRACE": "スタックトレース",
+    "PER_PAGE": "1ページあたり",
+    "RANGE": "{{from}}–{{to}} / {{count}}",
+    "PREV_PAGE": "前のページ",
+    "NEXT_PAGE": "次のページ"
   }
 }

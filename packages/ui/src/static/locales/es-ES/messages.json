@@ -10,7 +10,10 @@
     "EXPAND_SIDEBAR": "Expandir barra lateral",
     "COLLAPSE_SIDEBAR": "Colapsar barra lateral",
     "METRICS_HISTORY": "Historial de métricas",
-    "SCHEDULERS": "Programaciones"
+    "SCHEDULERS": "Programaciones",
+    "FILTER": "Filtrar",
+    "SORT": "Ordenar",
+    "SORT_NONE": "ninguno"
   },
   "DASHBOARD": {
     "JOBS_COUNT_one": "{{count}} Tarea",
@@ -273,7 +276,15 @@
       "RESULT_many": "{{count}} tareas encontradas",
       "RESULT_other": "{{count}} tareas encontradas",
       "TRUNCATED": "se detuvo tras leer {{scanned}} tareas, afina la búsqueda para ver el resto",
-      "EMPTY_STATE": "Ninguna tarea coincide con estos filtros."
+      "EMPTY_STATE": "Ninguna tarea coincide con estos filtros.",
+      "TIP_BEFORE": "La búsqueda usa ",
+      "TIP_MIDDLE": ", con LIKE, IN e IS NULL. Mira los ",
+      "TIP_EXAMPLES": "ejemplos",
+      "TIP_CLOSE": "Cerrar"
+    },
+    "TABS": {
+      "ADD": "Nueva pestaña",
+      "CLOSE": "Cerrar pestaña"
     }
   },
   "METRICS": {
@@ -566,5 +577,44 @@
       "LIMIT": "Ejecuciones máximas",
       "END_DATE": "Fecha de fin"
     }
+  },
+  "MONITOR": {
+    "COLUMNS": {
+      "ACTIONS": "Acciones",
+      "ID": "ID",
+      "STATUS": "Estado",
+      "NAME": "Nombre",
+      "TIMESTAMP": "Creado",
+      "DELAY": "Retraso",
+      "TIME": "Tiempo",
+      "ATTEMPTS": "Intentos",
+      "PROGRESS": "Progreso"
+    },
+    "STEP_QUEUED": "En cola",
+    "STEP_DELAYED": "Retrasado",
+    "STEP_PROCESSED": "Procesado",
+    "STEP_FINISHED": "Terminado",
+    "STEP_FAILED": "Falló",
+    "MORE": "Más",
+    "SAVE_JSON": "Guardar como JSON",
+    "EXPORT_JSON": "Exportar jobs como JSON",
+    "OPEN_JOB": "Abrir job",
+    "CONFIRM_RETRY_SELECTED": "¿Reintentar los jobs seleccionados ({{count}})?",
+    "CONFIRM_DELETE_SELECTED": "¿Eliminar los jobs seleccionados ({{count}})?",
+    "SELECTED": "Seleccionados: {{count}}",
+    "RETRY_SELECTED": "Reintentar los seleccionados",
+    "DELETE_SELECTED": "Eliminar los seleccionados",
+    "CLEAN": "Limpiar",
+    "SELECT_ALL": "Seleccionar todos",
+    "SELECT_JOB": "Seleccionar el job {{id}}",
+    "DELETE_JOB": "Eliminar job",
+    "INFO": "Detalles",
+    "JOB_DATA": "Datos del job",
+    "RETURN_VALUE": "Valor de retorno",
+    "STACKTRACE": "Stacktrace",
+    "PER_PAGE": "Por página",
+    "RANGE": "{{from}}–{{to}} de {{count}}",
+    "PREV_PAGE": "Página anterior",
+    "NEXT_PAGE": "Página siguiente"
   }
 }

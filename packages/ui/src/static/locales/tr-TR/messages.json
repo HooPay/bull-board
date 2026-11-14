@@ -10,7 +10,10 @@
     "EXPAND_SIDEBAR": "Kenar çubuğunu genişlet",
     "COLLAPSE_SIDEBAR": "Kenar çubuğunu daralt",
     "METRICS_HISTORY": "Metrik geçmişi",
-    "SCHEDULERS": "Zamanlayıcılar"
+    "SCHEDULERS": "Zamanlayıcılar",
+    "FILTER": "Filtrele",
+    "SORT": "Sırala",
+    "SORT_NONE": "yok"
   },
   "DASHBOARD": {
     "JOBS_COUNT_one": "{{count}} iş",
@@ -271,7 +274,15 @@
       "RESULT_one": "{{count}} eşleşen iş",
       "RESULT_other": "{{count}} eşleşen iş",
       "TRUNCATED": "{{scanned}} iş okunduktan sonra durdu, geri kalanı görmek için aramayı daraltın",
-      "EMPTY_STATE": "Bu filtrelerle eşleşen iş yok."
+      "EMPTY_STATE": "Bu filtrelerle eşleşen iş yok.",
+      "TIP_BEFORE": "Arama ",
+      "TIP_MIDDLE": " ile LIKE, IN ve IS NULL kullanır. Bakın: ",
+      "TIP_EXAMPLES": "örnekler",
+      "TIP_CLOSE": "Kapat"
+    },
+    "TABS": {
+      "ADD": "Sekme ekle",
+      "CLOSE": "Sekmeyi kapat"
     }
   },
   "METRICS": {
@@ -562,5 +573,44 @@
       "LIMIT": "En fazla çalışma",
       "END_DATE": "Bitiş tarihi"
     }
+  },
+  "MONITOR": {
+    "COLUMNS": {
+      "ACTIONS": "İşlemler",
+      "ID": "ID",
+      "STATUS": "Durum",
+      "NAME": "Ad",
+      "TIMESTAMP": "Oluşturulma",
+      "DELAY": "Gecikme",
+      "TIME": "Süre",
+      "ATTEMPTS": "Deneme",
+      "PROGRESS": "İlerleme"
+    },
+    "STEP_QUEUED": "Kuyruğa alındı",
+    "STEP_DELAYED": "Ertelendi",
+    "STEP_PROCESSED": "İşlendi",
+    "STEP_FINISHED": "Tamamlandı",
+    "STEP_FAILED": "Başarısız",
+    "MORE": "Daha fazla",
+    "SAVE_JSON": "JSON olarak kaydet",
+    "EXPORT_JSON": "İşleri JSON olarak dışa aktar",
+    "OPEN_JOB": "İşi aç",
+    "CONFIRM_RETRY_SELECTED": "Seçili işler ({{count}}) yeniden denensin mi?",
+    "CONFIRM_DELETE_SELECTED": "Seçili işler ({{count}}) silinsin mi?",
+    "SELECTED": "Seçili: {{count}}",
+    "RETRY_SELECTED": "Seçilileri yeniden dene",
+    "DELETE_SELECTED": "Seçilileri sil",
+    "CLEAN": "Temizle",
+    "SELECT_ALL": "Tümünü seç",
+    "SELECT_JOB": "{{id}} işini seç",
+    "DELETE_JOB": "İşi sil",
+    "INFO": "Ayrıntılar",
+    "JOB_DATA": "İş verisi",
+    "RETURN_VALUE": "Dönüş değeri",
+    "STACKTRACE": "Yığın izi",
+    "PER_PAGE": "Sayfa başına",
+    "RANGE": "{{from}}–{{to}} / {{count}}",
+    "PREV_PAGE": "Önceki sayfa",
+    "NEXT_PAGE": "Sonraki sayfa"
   }
 }

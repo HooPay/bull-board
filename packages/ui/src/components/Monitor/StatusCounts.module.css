@@ -1,0 +1,59 @@
+/* MUI Chip size="small" per status, as Bull Monitor's drawer shows them. */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.chips > li {
+  margin: 0 2px 2px 0;
+  line-height: 1;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 8px;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0;
+  white-space: nowrap;
+  box-sizing: border-box;
+}
+
+.chips .chip:not(:empty) {
+  padding: 0 7px;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.bar {
+  display: flex;
+  height: 3px;
+  margin-top: 6px;
+  overflow: hidden;
+}
+
+/* The table's Status column: MUI Chip, medium. */
+.statusChip {
+  display: inline-flex;
+  align-items: center;
+  height: 32px;
+  padding: 0 12px;
+  border-radius: 16px;
+  color: #fff;
+  font-size: 13px;
+  line-height: 1;
+  white-space: nowrap;
+}

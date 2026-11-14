@@ -7,7 +7,6 @@ import { HeaderActions } from './components/HeaderActions/HeaderActions';
 import { Loader } from './components/Loader/Loader';
 import { Menu } from './components/Menu/Menu';
 import { SidebarToggle } from './components/SidebarToggle/SidebarToggle';
-import { Title } from './components/Title/Title';
 import { Toaster } from './components/Toaster/Toaster';
 import { useConfirm } from './hooks/useConfirm';
 import { useDarkMode } from './hooks/useDarkMode';
@@ -63,10 +62,7 @@ export const App = () => {
   return (
     <Tooltip.Provider delay={400} closeDelay={100}>
       <Header>
-        <div className="header-title-group">
-          {!isMobile && <SidebarToggle />}
-          <Title />
-        </div>
+        <div className="header-title-group">{!isMobile && <SidebarToggle />}</div>
         <HeaderActions />
       </Header>
       {!isMobile && <Menu />}

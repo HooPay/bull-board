@@ -1,4 +1,5 @@
 import type { AppQueue, JobsOrder } from '@bull-board/api/typings/app';
+import { CircleHelp, Delete, Info, ListFilter, X } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import {
@@ -6,9 +7,9 @@ import {
   JobFilters as Filters,
   useJobFilters,
 } from '../../hooks/useJobFilters';
-import { Button } from '../Button/Button';
-import { SelectField } from '../Form/SelectField/SelectField';
-import { CloseIcon } from '../Icons/Close';
+import { useSettingsStore } from '../../hooks/useSettings';
+import { IconButton } from '../Monitor/IconButton';
+import { OutlinedInput, OutlinedSelect } from '../Monitor/OutlinedField';
 import { FilterBuilder } from './FilterBuilder';
 import s from './JobFilters.module.css';
 
@@ -48,12 +49,6 @@ const SEARCH_EXAMPLES = [
   { code: "$icontains(data.description, 'pix')", help: 'QUEUE.FILTERS.SEARCH_HELP_CONTAINS' },
 ] as const;
 
-const ClearButton = ({ label, onClick }: { label: string; onClick: () => void }) => (
-  <button type="button" className={s.clear} aria-label={label} title={label} onClick={onClick}>
-    <CloseIcon />
-  </button>
-);
-
 export const JobFilters = ({ queue }: { queue: AppQueue }) => {
   const { t } = useTranslation();
   const [filters, update] = useJobFilters();
@@ -65,115 +60,122 @@ export const JobFilters = ({ queue }: { queue: AppQueue }) => {
   const result = hasActiveJobFilters(filters) ? queue.search : undefined;
   const [builderOpen, setBuilderOpen] = useState(false);
 
+  const hideTip = useSettingsStore((state) => !!state.hideSearchTip);
+  const setSettings = useSettingsStore((state) => state.setSettings);
+  const [examplesOpen, setExamplesOpen] = useState(false);
+  const pick = (code: string) => {
+    changeSearch(code);
+    update({ search: code });
+  };
+
   return (
     <div className={s.filters}>
-      <div className={s.row}>
-        <label className={s.field}>
-          <span className={s.label}>{t('QUEUE.FILTERS.JOB_ID')}</span>
-          <span className={s.control}>
-            <input
-              type="text"
-              className={s.input}
-              value={jobId}
-              autoComplete="off"
-              spellCheck={false}
-              onChange={({ currentTarget }) => changeJobId(currentTarget.value)}
-              onKeyDown={(event) => event.key === 'Enter' && flushJobId()}
-            />
-            {jobId && (
-              <ClearButton
-                label={t('QUEUE.FILTERS.CLEAR')}
-                onClick={() => {
-                  changeJobId('');
-                  update({ jobId: '' });
-                }}
-              />
-            )}
+      {!hideTip && (
+        <div className={s.tip} role="note">
+          <Info className={s.tipIcon} />
+          <span className={s.tipMessage}>
+            {t('QUEUE.FILTERS.TIP_BEFORE')}
+            <a href="https://docs.jsonata.org/overview.html" target="_blank" rel="noreferrer">
+              jsonata
+            </a>
+            {t('QUEUE.FILTERS.TIP_MIDDLE')}
+            <a
+              href="#examples"
+              onClick={(event) => {
+                event.preventDefault();
+                setExamplesOpen((open) => !open);
+              }}
+            >
+              {t('QUEUE.FILTERS.TIP_EXAMPLES')}
+            </a>
+            .
           </span>
-        </label>
-
-        <div className={s.field}>
-          <span className={s.label} id="job-filters-order">
-            {t('QUEUE.FILTERS.ORDER')}
-          </span>
-          <SelectField
-            className={s.select}
-            aria-labelledby="job-filters-order"
-            value={filters.order}
-            onChange={(order) => update({ order: order as JobsOrder })}
-            options={[
-              { value: 'desc', text: t('QUEUE.FILTERS.ORDER_DESC') },
-              { value: 'asc', text: t('QUEUE.FILTERS.ORDER_ASC') },
-            ]}
-          />
+          <IconButton
+            size="small"
+            className={s.tipClose}
+            label={t('QUEUE.FILTERS.TIP_CLOSE')}
+            onClick={() => setSettings({ hideSearchTip: true })}
+          >
+            <X />
+          </IconButton>
         </div>
+      )}
 
-        <label className={`${s.field} ${s.searchField}`}>
-          <span className={s.label}>{t('QUEUE.FILTERS.SEARCH')}</span>
-          <span className={s.control}>
-            <input
-              type="text"
-              className={`${s.input} ${s.code}`}
-              value={search}
-              placeholder={t('QUEUE.FILTERS.SEARCH_PLACEHOLDER')}
-              autoComplete="off"
-              spellCheck={false}
-              onChange={({ currentTarget }) => changeSearch(currentTarget.value)}
-              onKeyDown={(event) => event.key === 'Enter' && flushSearch()}
-            />
-            {search && (
-              <ClearButton
+      <div className={s.row}>
+        <OutlinedInput
+          className={s.jobId}
+          label={t('QUEUE.FILTERS.JOB_ID')}
+          value={jobId}
+          onChange={changeJobId}
+          inputProps={{ onKeyDown: (event) => event.key === 'Enter' && flushJobId() }}
+        />
+        <OutlinedSelect
+          className={s.order}
+          label={t('QUEUE.FILTERS.ORDER')}
+          value={filters.order}
+          onChange={(order) => update({ order: order as JobsOrder })}
+          options={[
+            { value: 'desc', text: t('QUEUE.FILTERS.ORDER_DESC') },
+            { value: 'asc', text: t('QUEUE.FILTERS.ORDER_ASC') },
+          ]}
+        />
+        <OutlinedInput
+          className={s.search}
+          label={t('QUEUE.FILTERS.SEARCH')}
+          value={search}
+          onChange={changeSearch}
+          inputProps={{
+            placeholder: t('QUEUE.FILTERS.SEARCH_PLACEHOLDER'),
+            onKeyDown: (event) => event.key === 'Enter' && flushSearch(),
+          }}
+          endAdornment={
+            <>
+              <IconButton
+                size="small"
+                label={t('QUEUE.FILTERS.SEARCH_HELP')}
+                aria-expanded={examplesOpen}
+                onClick={() => setExamplesOpen((open) => !open)}
+              >
+                <CircleHelp className={s.smallIcon} />
+              </IconButton>
+              <IconButton
+                size="small"
                 label={t('QUEUE.FILTERS.CLEAR')}
                 onClick={() => {
                   changeSearch('');
                   update({ search: '' });
                 }}
-              />
-            )}
-          </span>
-        </label>
-        <Button
-          theme="basic"
+              >
+                <Delete className={s.smallIcon} />
+              </IconButton>
+            </>
+          }
+        />
+        <button
+          type="button"
           className={s.builderToggle}
-          isActive={builderOpen}
-          aria-expanded={builderOpen}
+          aria-pressed={builderOpen}
           onClick={() => setBuilderOpen((open) => !open)}
         >
+          <ListFilter />
           {t('QUEUE.FILTERS.BUILDER')}
-        </Button>
+        </button>
       </div>
 
-      {builderOpen && (
-        <FilterBuilder
-          queueName={queue.name}
-          jobs={queue.jobs}
-          onApply={(next) => {
-            changeSearch(next);
-            update({ search: next });
-          }}
-        />
-      )}
-
-      <details className={s.help}>
-        <summary className={s.helpSummary}>{t('QUEUE.FILTERS.SEARCH_HELP')}</summary>
-        <ul className={s.helpList}>
+      {examplesOpen && (
+        <ul className={s.helpList} id="examples">
           {SEARCH_EXAMPLES.map((example) => (
             <li key={example.code}>
-              <button
-                type="button"
-                className={s.example}
-                onClick={() => {
-                  changeSearch(example.code);
-                  update({ search: example.code });
-                }}
-              >
+              <button type="button" className={s.example} onClick={() => pick(example.code)}>
                 {example.code}
               </button>
               <span className={s.exampleHelp}>{t(example.help)}</span>
             </li>
           ))}
         </ul>
-      </details>
+      )}
+
+      {builderOpen && <FilterBuilder queueName={queue.name} jobs={queue.jobs} onApply={pick} />}
 
       {result && (
         <p className={s.result} role="status">
