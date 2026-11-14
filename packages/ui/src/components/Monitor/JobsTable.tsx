@@ -84,7 +84,9 @@ const pretty = (value: unknown) =>
   typeof value === 'string' ? value : JSON.stringify(value, null, 2);
 
 function download(name: string, value: unknown) {
-  const blob = new Blob([JSON.stringify(value, null, 2)], { type: 'application/json' });
+  const blob = new Blob([JSON.stringify(value, null, 2)], {
+    type: 'application/json',
+  });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
@@ -130,13 +132,16 @@ interface JobsTableProps {
 const Accordion = ({
   title,
   danger,
+  defaultOpen,
   children,
 }: {
   title: string;
   danger?: boolean;
+  /** Whether the block starts open; follows the "collapse job data / errors" settings. */
+  defaultOpen: boolean;
   children: React.ReactNode;
 }) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(defaultOpen);
   return (
     <div className={s.accordion}>
       <button
@@ -163,7 +168,12 @@ const InfoPanel = ({ job, status }: { job: AppJob; status: string }) => {
   const steps = [
     { label: t('MONITOR.STEP_QUEUED'), at: job.timestamp },
     ...((job.delay ?? 0) > 0
-      ? [{ label: t('MONITOR.STEP_DELAYED'), at: job.timestamp + (job.delay ?? 0) }]
+      ? [
+          {
+            label: t('MONITOR.STEP_DELAYED'),
+            at: job.timestamp + (job.delay ?? 0),
+          },
+        ]
       : []),
     { label: t('MONITOR.STEP_PROCESSED'), at: job.processedOn },
     {
@@ -303,6 +313,8 @@ export const JobsTable = ({
   const { openConfirm } = useConfirm();
   const jobsPerPage = useSettingsStore((state) => state.jobsPerPage);
   const setSettings = useSettingsStore((state) => state.setSettings);
+  const collapseJobData = useSettingsStore((state) => state.collapseJobData);
+  const collapseJobError = useSettingsStore((state) => state.collapseJobError);
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [infoOpen, setInfoOpen] = useState<Set<string>>(new Set());
   const writable = !queue.readOnlyMode;
@@ -598,17 +610,27 @@ export const JobsTable = ({
                         {blocks > 0 && (
                           <div className={cn(s.blocks, blocks > 1 && s.blocksTwo)}>
                             {hasData && (
-                              <Accordion title={t('MONITOR.JOB_DATA')}>
+                              <Accordion
+                                title={t('MONITOR.JOB_DATA')}
+                                defaultOpen={!collapseJobData}
+                              >
                                 {pretty(job.data)}
                               </Accordion>
                             )}
                             {hasReturn && (
-                              <Accordion title={t('MONITOR.RETURN_VALUE')}>
+                              <Accordion
+                                title={t('MONITOR.RETURN_VALUE')}
+                                defaultOpen={!collapseJobData}
+                              >
                                 {pretty(job.returnValue)}
                               </Accordion>
                             )}
                             {hasError && (
-                              <Accordion title={t('MONITOR.STACKTRACE')} danger>
+                              <Accordion
+                                title={t('MONITOR.STACKTRACE')}
+                                danger
+                                defaultOpen={!collapseJobError}
+                              >
                                 {job.stacktrace.length > 0
                                   ? job.stacktrace.join('\n\n')
                                   : job.failedReason}
