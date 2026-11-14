@@ -69,6 +69,10 @@
   --sidebar-border: #dde3e9;
   /* Laid over each open submenu; nested ones stack, so every level reads a step darker. */
   --sidebar-level-shade: rgba(15, 23, 42, 0.05);
+  --sidebar-group: rgba(15, 23, 42, 0.06);
+  --sidebar-group-hover: rgba(15, 23, 42, 0.1);
+  /* HooPay: menu accent, orange like the manager's highlighted items. */
+  --menu-accent: #e65100;
 
   /* Job statuses: the board's domain vocabulary. Hues are long-established
      bull-board semantics, only recalibrated per theme. */
@@ -142,6 +146,9 @@
   --sidebar-accent: rgba(255, 255, 255, 0.08);
   --sidebar-border: rgba(255, 255, 255, 0.12);
   --sidebar-level-shade: rgba(0, 0, 0, 0.24);
+  --sidebar-group: #1e1e1e;
+  --sidebar-group-hover: #2a2a2a;
+  --menu-accent: #ff9800;
 
   /* Job statuses */
   --status-failed: #f44336;
@@ -232,6 +239,10 @@
   --sidebar-state-selected: color-mix(in srgb, var(--sidebar-primary) 16%, transparent);
   --sidebar-state-selected-hover: color-mix(in srgb, var(--sidebar-primary) 24%, transparent);
   --sidebar-state-selected-foreground: var(--sidebar-primary);
+  --menu-radius: 8px;
+  --menu-hover: color-mix(in srgb, var(--menu-accent) 10%, transparent);
+  --menu-selected: color-mix(in srgb, var(--menu-accent) 18%, transparent);
+  --menu-selected-hover: color-mix(in srgb, var(--menu-accent) 26%, transparent);
 
   /* CodeMirror's own chrome, tracked to the surfaces it sits on. */
   --json-edit-cursor-color: var(--foreground);
