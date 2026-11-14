@@ -12,6 +12,7 @@
     "METRICS_HISTORY": "Metrikverlauf",
     "SCHEDULERS": "Zeitpläne",
     "FILTER": "Filtern",
+    "RESIZE": "Ziehen, um die Menübreite zu ändern (Doppelklick setzt zurück)",
     "SORT": "Sortieren",
     "SORT_NONE": "keine"
   },

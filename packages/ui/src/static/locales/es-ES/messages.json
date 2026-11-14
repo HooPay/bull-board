@@ -12,6 +12,7 @@
     "METRICS_HISTORY": "Historial de métricas",
     "SCHEDULERS": "Programaciones",
     "FILTER": "Filtrar",
+    "RESIZE": "Arrastra para cambiar el ancho del menú (doble clic restablece)",
     "SORT": "Ordenar",
     "SORT_NONE": "ninguno"
   },

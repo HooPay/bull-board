@@ -17,6 +17,7 @@ import { GitHub } from '../Icons/GitHub';
 import { IconButton } from '../Monitor/IconButton';
 import { OutlinedInput } from '../Monitor/OutlinedField';
 import { MONITOR_STATUS_ORDER } from '../Monitor/StatusCounts';
+import { MenuResizer } from './MenuResizer';
 import { MenuTree } from './MenuTree/MenuTree';
 import s from './Menu.module.css';
 
@@ -126,6 +127,7 @@ export const Menu = () => {
         <GitHub className={s.githubIcon} />
         {process.env.APP_VERSION}
       </a>
+      <MenuResizer />
     </aside>
   );
 };

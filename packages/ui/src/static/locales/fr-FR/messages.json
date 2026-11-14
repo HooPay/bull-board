@@ -12,6 +12,7 @@
     "METRICS_HISTORY": "Historique des métriques",
     "SCHEDULERS": "Planificateurs",
     "FILTER": "Filtrer",
+    "RESIZE": "Glisser pour redimensionner le menu (double-clic pour réinitialiser)",
     "SORT": "Trier",
     "SORT_NONE": "aucun"
   },

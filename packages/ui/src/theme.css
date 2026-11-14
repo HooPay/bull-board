@@ -16,7 +16,6 @@
 :root {
   /* Layout */
   --header-height: 64px;
-  --menu-width: 260px;
   --body-padding: 8px;
   --card-padding: 1rem;
 
@@ -200,6 +199,8 @@
 :root,
 .dark-mode {
   --header-offset: var(--header-height);
+  /* The width dragged by the viewer, else uiConfig.menu.width, else Bull Monitor's 260px. */
+  --menu-width: var(--menu-width-user, var(--menu-width-config, 260px));
 
   /* Shape */
   --radius-sm: calc(var(--radius) - 2px);
@@ -255,6 +256,11 @@
     --header-height: 108px;
     --body-padding: 1rem;
     --card-padding: 0.75rem;
+  }
+
+  /* Also on .dark-mode, which redeclares the width on body. */
+  :root,
+  .dark-mode {
     --menu-width: 0px;
   }
 }

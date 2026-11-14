@@ -12,6 +12,7 @@
     "METRICS_HISTORY": "メトリクス履歴",
     "SCHEDULERS": "スケジューラー",
     "FILTER": "フィルター",
+    "RESIZE": "ドラッグでメニューの幅を変更（ダブルクリックでリセット）",
     "SORT": "並べ替え",
     "SORT_NONE": "なし"
   },

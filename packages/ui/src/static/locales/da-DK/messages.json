@@ -12,6 +12,7 @@
     "METRICS_HISTORY": "Metrikhistorik",
     "SCHEDULERS": "Planlægninger",
     "FILTER": "Filtrér",
+    "RESIZE": "Træk for at ændre menuens bredde (dobbeltklik nulstiller)",
     "SORT": "Sortér",
     "SORT_NONE": "ingen"
   },

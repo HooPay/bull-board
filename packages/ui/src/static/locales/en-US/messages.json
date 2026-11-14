@@ -12,6 +12,7 @@
     "METRICS_HISTORY": "Metrics history",
     "SCHEDULERS": "Schedulers",
     "FILTER": "Filter",
+    "RESIZE": "Drag to resize the menu (double click resets)",
     "SORT": "Sort",
     "SORT_NONE": "none"
   },

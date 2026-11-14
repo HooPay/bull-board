@@ -41,6 +41,8 @@ interface SettingsState {
   /** Bull Monitor's tabs: each open tab is a queue page URL; `activeTab` indexes them. */
   tabs?: string[];
   activeTab?: number;
+  /** Sidebar width in pixels, dragged from its right edge. Undefined keeps the default. */
+  menuWidth?: number;
   /** The jsonata tip above the search was dismissed. */
   hideSearchTip?: boolean;
   sidebarCollapsed: boolean;

@@ -12,6 +12,7 @@
     "METRICS_HISTORY": "指标历史",
     "SCHEDULERS": "调度器",
     "FILTER": "筛选",
+    "RESIZE": "拖动以调整菜单宽度（双击恢复）",
     "SORT": "排序",
     "SORT_NONE": "无"
   },

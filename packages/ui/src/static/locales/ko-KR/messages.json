@@ -12,6 +12,7 @@
     "METRICS_HISTORY": "메트릭 기록",
     "SCHEDULERS": "스케줄러",
     "FILTER": "필터",
+    "RESIZE": "드래그하여 메뉴 너비 변경 (더블 클릭 시 초기화)",
     "SORT": "정렬",
     "SORT_NONE": "없음"
   },
