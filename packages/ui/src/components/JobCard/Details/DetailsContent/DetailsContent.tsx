@@ -51,6 +51,7 @@ export const DetailsContent = ({ selectedTab, job, actions, status }: DetailsCon
         <CollapsibleJSON
           data={{ jobData, returnValue }}
           defaultCollapseDepth={defaultCollapseDepth}
+          expandAll={!collapseJobData}
         />
       ) : (
         <Highlight language="json" text={JSON.stringify({ jobData, returnValue }, null, 2)} />

@@ -8,6 +8,7 @@ import s from './CollapsibleJSON.module.css';
 interface CollapsibleJSONProps {
   data: any;
   defaultCollapseDepth?: number;
+  expandAll?: boolean;
 }
 
 const customStyles = {
@@ -31,17 +32,21 @@ const customStyles = {
 export const CollapsibleJSON: React.FC<CollapsibleJSONProps> = ({
   data,
   defaultCollapseDepth = 3,
+  expandAll = false,
 }) => {
   const textToCopy = useMemo(() => JSON.stringify(data, null, 2), [data]);
 
   const shouldExpandNode = useCallback(
     (level: number) => {
+      if (expandAll) {
+        return true;
+      }
       if (defaultCollapseDepth === 0) {
         return collapseAllNested(level);
       }
       return level < defaultCollapseDepth;
     },
-    [defaultCollapseDepth]
+    [defaultCollapseDepth, expandAll]
   );
 
   return (
