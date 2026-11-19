@@ -81,6 +81,7 @@ describe('theme.css', () => {
       '--body-padding',
       '--card-padding',
       '--font-sans',
+      '--font-title',
       '--font-mono',
       '--radius',
       '--shadow-popover',

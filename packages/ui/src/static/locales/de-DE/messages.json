@@ -10,7 +10,11 @@
     "EXPAND_SIDEBAR": "Seitenleiste ausklappen",
     "COLLAPSE_SIDEBAR": "Seitenleiste einklappen",
     "METRICS_HISTORY": "Metrikverlauf",
-    "SCHEDULERS": "Zeitpläne"
+    "SCHEDULERS": "Zeitpläne",
+    "FILTER": "Filtern",
+    "RESIZE": "Ziehen, um die Menübreite zu ändern (Doppelklick setzt zurück)",
+    "SORT": "Sortieren",
+    "SORT_NONE": "keine"
   },
   "DASHBOARD": {
     "JOBS_COUNT_one": "{{count}} Job",
@@ -106,6 +110,7 @@
     "NA": "k. A.",
     "NO_PROGRESS": "Keine Fortschrittsdaten verfügbar",
     "NO_ERRORS": "Keine Fehler aufgezeichnet",
+    "FAILED_LABEL": "Fehlgeschlagen",
     "NO_LOGS": "Keine Logs verfügbar",
     "LOGS": {
       "FILTER_PLACEHOLDER": "Filter"
@@ -270,7 +275,15 @@
       "RESULT_one": "{{count}} passender Job",
       "RESULT_other": "{{count}} passende Jobs",
       "TRUNCATED": "nach {{scanned}} gelesenen Jobs angehalten, grenzen Sie die Suche ein, um den Rest zu sehen",
-      "EMPTY_STATE": "Keine Jobs entsprechen diesen Filtern."
+      "EMPTY_STATE": "Keine Jobs entsprechen diesen Filtern.",
+      "TIP_BEFORE": "Die Suche nutzt ",
+      "TIP_MIDDLE": ", dazu LIKE, IN und IS NULL. Siehe die ",
+      "TIP_EXAMPLES": "Beispiele",
+      "TIP_CLOSE": "Schließen"
+    },
+    "TABS": {
+      "ADD": "Neuer Tab",
+      "CLOSE": "Tab schließen"
     }
   },
   "METRICS": {
@@ -561,5 +574,44 @@
       "LIMIT": "Maximale Läufe",
       "END_DATE": "Enddatum"
     }
+  },
+  "MONITOR": {
+    "COLUMNS": {
+      "ACTIONS": "Aktionen",
+      "ID": "ID",
+      "STATUS": "Status",
+      "NAME": "Name",
+      "TIMESTAMP": "Erstellt",
+      "DELAY": "Verzögerung",
+      "TIME": "Dauer",
+      "ATTEMPTS": "Versuche",
+      "PROGRESS": "Fortschritt"
+    },
+    "STEP_QUEUED": "Eingereiht",
+    "STEP_DELAYED": "Verzögert",
+    "STEP_PROCESSED": "Verarbeitet",
+    "STEP_FINISHED": "Abgeschlossen",
+    "STEP_FAILED": "Fehlgeschlagen",
+    "MORE": "Mehr",
+    "SAVE_JSON": "Als JSON speichern",
+    "EXPORT_JSON": "Jobs als JSON exportieren",
+    "OPEN_JOB": "Job öffnen",
+    "CONFIRM_RETRY_SELECTED": "Ausgewählte Jobs ({{count}}) erneut versuchen?",
+    "CONFIRM_DELETE_SELECTED": "Ausgewählte Jobs ({{count}}) löschen?",
+    "SELECTED": "Ausgewählt: {{count}}",
+    "RETRY_SELECTED": "Auswahl erneut versuchen",
+    "DELETE_SELECTED": "Auswahl löschen",
+    "CLEAN": "Bereinigen",
+    "SELECT_ALL": "Alle auswählen",
+    "SELECT_JOB": "Job {{id}} auswählen",
+    "DELETE_JOB": "Job löschen",
+    "INFO": "Details",
+    "JOB_DATA": "Job-Daten",
+    "RETURN_VALUE": "Rückgabewert",
+    "STACKTRACE": "Stacktrace",
+    "PER_PAGE": "Pro Seite",
+    "RANGE": "{{from}}–{{to}} von {{count}}",
+    "PREV_PAGE": "Vorherige Seite",
+    "NEXT_PAGE": "Nächste Seite"
   }
 }

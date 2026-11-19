@@ -82,7 +82,12 @@ describe('migrateSettings', () => {
   });
 
   it('leaves an already-migrated theme alone', () => {
-    expect(migrateSettings({ theme: 'system' }, 2)).toEqual({ theme: 'system' });
+    expect(migrateSettings({ theme: 'light' }, 2)).toEqual({ theme: 'light' });
+  });
+
+  it('moves the old "system" default to dark, the Bull Monitor look, once', () => {
+    expect(migrateSettings({ theme: 'system' }, 3)).toEqual({ theme: 'dark' });
+    expect(migrateSettings({ theme: 'system' }, 4)).toEqual({ theme: 'system' });
   });
 
   it('adds the schedulers sort next to a persisted dashboard sort', () => {

@@ -10,7 +10,11 @@
     "EXPAND_SIDEBAR": "Expandir barra lateral",
     "COLLAPSE_SIDEBAR": "Recolher barra lateral",
     "METRICS_HISTORY": "Histórico de métricas",
-    "SCHEDULERS": "Agendamentos"
+    "SCHEDULERS": "Agendamentos",
+    "FILTER": "Filtrar",
+    "RESIZE": "Arraste para ajustar a largura do menu (clique duplo restaura)",
+    "SORT": "Ordenar",
+    "SORT_NONE": "nenhuma"
   },
   "DASHBOARD": {
     "JOBS_COUNT_one": "{{count}} Tarefa",
@@ -107,6 +111,7 @@
     "NA": "N/D",
     "NO_PROGRESS": "Nenhum dado de progresso disponível",
     "NO_ERRORS": "Nenhum erro registrado",
+    "FAILED_LABEL": "Falhou",
     "NO_LOGS": "Nenhum log disponível",
     "LOGS": {
       "FILTER_PLACEHOLDER": "Filtros"
@@ -272,7 +277,15 @@
       "RESULT_many": "{{count}} jobs encontrados",
       "RESULT_other": "{{count}} jobs encontrados",
       "TRUNCATED": "parou após ler {{scanned}} jobs, refine a busca para ver o restante",
-      "EMPTY_STATE": "Nenhum job corresponde a estes filtros."
+      "EMPTY_STATE": "Nenhum job corresponde a estes filtros.",
+      "TIP_BEFORE": "A busca usa ",
+      "TIP_MIDDLE": ", com LIKE, IN e IS NULL. Veja os ",
+      "TIP_EXAMPLES": "exemplos",
+      "TIP_CLOSE": "Fechar"
+    },
+    "TABS": {
+      "ADD": "Nova aba",
+      "CLOSE": "Fechar aba"
     }
   },
   "METRICS": {
@@ -565,5 +578,44 @@
       "LIMIT": "Execuções máximas",
       "END_DATE": "Data final"
     }
+  },
+  "MONITOR": {
+    "COLUMNS": {
+      "ACTIONS": "Ações",
+      "ID": "ID",
+      "STATUS": "Status",
+      "NAME": "Nome",
+      "TIMESTAMP": "Criado em",
+      "DELAY": "Atraso",
+      "TIME": "Tempo",
+      "ATTEMPTS": "Tentativas",
+      "PROGRESS": "Progresso"
+    },
+    "STEP_QUEUED": "Na fila",
+    "STEP_DELAYED": "Atrasado",
+    "STEP_PROCESSED": "Processado",
+    "STEP_FINISHED": "Concluído",
+    "STEP_FAILED": "Falhou",
+    "MORE": "Mais",
+    "SAVE_JSON": "Salvar como JSON",
+    "EXPORT_JSON": "Exportar jobs como JSON",
+    "OPEN_JOB": "Abrir job",
+    "CONFIRM_RETRY_SELECTED": "Tentar novamente os jobs selecionados ({{count}})?",
+    "CONFIRM_DELETE_SELECTED": "Excluir os jobs selecionados ({{count}})?",
+    "SELECTED": "Selecionados: {{count}}",
+    "RETRY_SELECTED": "Tentar novamente os selecionados",
+    "DELETE_SELECTED": "Excluir os selecionados",
+    "CLEAN": "Limpar",
+    "SELECT_ALL": "Selecionar todos",
+    "SELECT_JOB": "Selecionar o job {{id}}",
+    "DELETE_JOB": "Excluir job",
+    "INFO": "Detalhes",
+    "JOB_DATA": "Dados do job",
+    "RETURN_VALUE": "Valor de retorno",
+    "STACKTRACE": "Stacktrace",
+    "PER_PAGE": "Por página",
+    "RANGE": "{{from}}–{{to}} de {{count}}",
+    "PREV_PAGE": "Página anterior",
+    "NEXT_PAGE": "Próxima página"
   }
 }

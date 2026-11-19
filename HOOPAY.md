@@ -5,6 +5,13 @@ published privately for HooPay projects.
 
 ## What the fork adds
 
+- **Bull Monitor look**: dark MUI palette (`#121212`, deep purple), Roboto, a drawer with
+  per-status count pills and a proportion bar, queue tabs, status chips, a jobs table with
+  expandable data / return value / stacktrace blocks and a "per page" footer. The pieces live in
+  `packages/ui/src/components/Monitor/`. The sidebar uses rounded items with an orange accent
+  (`--menu-accent`, `--menu-radius` in `theme.css`), and groups sit on their own shade.
+  Its width is dragged from the right edge and kept in the settings; a double click resets it.
+
 - **Job filters** above the job list: exact job id, order (newest or oldest first) and a search
   over the job (`name`, `data`, `returnvalue`, `progress`, options). The search is
   [JSONata](https://docs.jsonata.org) with SQL style operators on top:

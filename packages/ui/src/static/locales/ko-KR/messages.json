@@ -10,7 +10,11 @@
     "EXPAND_SIDEBAR": "사이드바 펼치기",
     "COLLAPSE_SIDEBAR": "사이드바 접기",
     "METRICS_HISTORY": "메트릭 기록",
-    "SCHEDULERS": "스케줄러"
+    "SCHEDULERS": "스케줄러",
+    "FILTER": "필터",
+    "RESIZE": "드래그하여 메뉴 너비 변경 (더블 클릭 시 초기화)",
+    "SORT": "정렬",
+    "SORT_NONE": "없음"
   },
   "DASHBOARD": {
     "JOBS_COUNT": "{{count}}개의 작업",
@@ -104,6 +108,7 @@
     "NA": "해당 없음",
     "NO_PROGRESS": "진행 데이터를 사용할 수 없습니다",
     "NO_ERRORS": "기록된 오류가 없습니다",
+    "FAILED_LABEL": "실패",
     "NO_LOGS": "로그를 사용할 수 없습니다",
     "LOGS": {
       "FILTER_PLACEHOLDER": "필터"
@@ -266,7 +271,15 @@
       "CLEAR": "지우기",
       "RESULT": "일치하는 작업 {{count}}개",
       "TRUNCATED": "작업 {{scanned}}개를 읽은 후 중단됨, 나머지를 보려면 검색 범위를 좁히세요",
-      "EMPTY_STATE": "이 필터와 일치하는 작업이 없습니다."
+      "EMPTY_STATE": "이 필터와 일치하는 작업이 없습니다.",
+      "TIP_BEFORE": "검색은 ",
+      "TIP_MIDDLE": "와 LIKE, IN, IS NULL을 사용합니다. ",
+      "TIP_EXAMPLES": "예시 보기",
+      "TIP_CLOSE": "닫기"
+    },
+    "TABS": {
+      "ADD": "탭 추가",
+      "CLOSE": "탭 닫기"
     }
   },
   "METRICS": {
@@ -553,5 +566,44 @@
       "LIMIT": "최대 실행 횟수",
       "END_DATE": "종료 날짜"
     }
+  },
+  "MONITOR": {
+    "COLUMNS": {
+      "ACTIONS": "작업",
+      "ID": "ID",
+      "STATUS": "상태",
+      "NAME": "이름",
+      "TIMESTAMP": "생성 시각",
+      "DELAY": "지연",
+      "TIME": "소요 시간",
+      "ATTEMPTS": "시도",
+      "PROGRESS": "진행률"
+    },
+    "STEP_QUEUED": "대기열 추가",
+    "STEP_DELAYED": "지연됨",
+    "STEP_PROCESSED": "처리됨",
+    "STEP_FINISHED": "완료됨",
+    "STEP_FAILED": "실패",
+    "MORE": "더보기",
+    "SAVE_JSON": "JSON으로 저장",
+    "EXPORT_JSON": "작업을 JSON으로 내보내기",
+    "OPEN_JOB": "작업 열기",
+    "CONFIRM_RETRY_SELECTED": "선택한 작업({{count}})을 다시 시도할까요?",
+    "CONFIRM_DELETE_SELECTED": "선택한 작업({{count}})을 삭제할까요?",
+    "SELECTED": "선택됨: {{count}}",
+    "RETRY_SELECTED": "선택한 작업 다시 시도",
+    "DELETE_SELECTED": "선택한 작업 삭제",
+    "CLEAN": "정리",
+    "SELECT_ALL": "모두 선택",
+    "SELECT_JOB": "작업 {{id}} 선택",
+    "DELETE_JOB": "작업 삭제",
+    "INFO": "세부 정보",
+    "JOB_DATA": "작업 데이터",
+    "RETURN_VALUE": "반환 값",
+    "STACKTRACE": "스택 트레이스",
+    "PER_PAGE": "페이지당",
+    "RANGE": "{{from}}–{{to}} / {{count}}",
+    "PREV_PAGE": "이전 페이지",
+    "NEXT_PAGE": "다음 페이지"
   }
 }

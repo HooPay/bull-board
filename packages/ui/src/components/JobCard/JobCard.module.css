@@ -240,3 +240,42 @@
     min-width: 0;
   }
 }
+
+/* A failed job, whatever tab it is listed under: a red edge and its error up front. */
+.failedCard {
+  box-shadow:
+    0 0 0 1px var(--border),
+    inset 3px 0 0 var(--status-failed);
+}
+
+.failedBanner {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  margin: 0 0 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  background-color: color-mix(in srgb, var(--status-failed) 14%, transparent);
+  border-left: 3px solid var(--status-failed);
+  color: var(--foreground);
+  font-size: 0.85rem;
+  min-width: 0;
+}
+
+.failedLabel {
+  flex-shrink: 0;
+  color: var(--status-failed);
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
+}
+
+.failedMessage {
+  min-width: 0;
+  overflow: hidden;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

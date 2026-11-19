@@ -1,0 +1,79 @@
+/* Bull Monitor's WorkspacePicker: an elevation-1 Paper with a row of medium chips. */
+.card {
+  margin-bottom: 8px;
+  padding: 8px 8px 0;
+  border-radius: 4px;
+  background-color: var(--card);
+  box-shadow:
+    0px 2px 1px -1px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+}
+
+.chips {
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  max-width: 100%;
+  margin-bottom: 8px;
+  overflow-x: auto;
+}
+
+.chips > * {
+  margin: 4px;
+}
+
+.chip {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  height: 32px;
+  border-radius: 16px;
+  background-color: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  font-size: 13px;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.chip:hover {
+  background-color: rgba(255, 255, 255, 0.24);
+}
+
+.active,
+.active:hover {
+  background-color: var(--primary);
+}
+
+.active:hover {
+  background-color: var(--primary-hover);
+}
+
+.label {
+  padding: 0 12px;
+}
+
+.close {
+  display: inline-flex;
+  margin: 0 5px 0 -6px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: rgba(255, 255, 255, 0.26);
+  cursor: pointer;
+}
+
+.active .close {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.close:hover {
+  color: #fff;
+}
+
+.close > svg {
+  width: 22px;
+  height: 22px;
+}

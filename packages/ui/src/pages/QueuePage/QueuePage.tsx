@@ -4,15 +4,13 @@ import React, { Suspense, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { SchedulersIcon } from '../../components/Icons/Schedulers';
-import { JobCard } from '../../components/JobCard/JobCard';
 import { JobFilters } from '../../components/JobFilters/JobFilters';
 import { Loader } from '../../components/Loader/Loader';
-import { Pagination } from '../../components/Pagination/Pagination';
-import { QueueActions } from '../../components/QueueActions/QueueActions';
+import { JobsTable } from '../../components/Monitor/JobsTable';
+import { QueueTabs } from '../../components/Monitor/QueueTabs';
+import { StatusSelector } from '../../components/Monitor/StatusSelector';
 import { QueueDropdownActions } from '../../components/QueueDropdownActions/QueueDropdownActions';
 import { RateLimitBadge } from '../../components/RateLimitBadge/RateLimitBadge';
-import { StatusMenu } from '../../components/StatusMenu/StatusMenu';
-import { StickyHeader } from '../../components/StickyHeader/StickyHeader';
 import { WorkersBadge } from '../../components/WorkersBadge/WorkersBadge';
 import { useActiveQueue } from '../../hooks/useActiveQueue';
 import { useJob } from '../../hooks/useJob';
@@ -82,43 +80,70 @@ export const QueuePage = () => {
   const status = selectedStatus[queue.name];
   const isLatest = status === STATUSES.latest;
   const schedulerCount = queue.jobSchedulerCount ?? 0;
+  const filtering = hasActiveJobFilters(jobFilters);
+
+  // The pagination footer's "of N": the search's matches, the status count, or, for the
+  // latest view, every job in the queue.
+  const total = queue.search
+    ? queue.search.matched
+    : jobFilters.jobId
+      ? queue.jobs.length
+      : isLatest
+        ? queue.statuses
+            .filter((item) => item !== STATUSES.latest)
+            .reduce((sum, item) => sum + (queue.counts[item] ?? 0), 0)
+        : (queue.counts[status] ?? 0);
+
+  const withJob = (job: AppJob, open: () => void) => {
+    setEditJob(job);
+    open();
+  };
 
   return (
-    <section>
-      <StickyHeader
-        actions={
-          <>
-            {queue.jobs.length > 0 && !queue.readOnlyMode && (
-              <QueueActions
-                queue={queue}
-                actions={actions}
-                status={selectedStatus[queue.name]}
-                allowRetries={
-                  (selectedStatus[queue.name] == 'failed' || queue.allowCompletedRetries) &&
-                  queue.allowRetries
-                }
-              />
-            )}
+    <section className={s.page}>
+      <QueueTabs />
 
-            <Pagination pageCount={queue.pagination.pageCount} />
-          </>
-        }
-      >
-        <StatusMenu queue={queue}>
-          {schedulerCount > 0 && (
-            <Link
-              className={s.schedulersLink}
-              to={links.jobSchedulers({ queueName: queue.name })}
-              aria-label={t('QUEUE.SCHEDULERS_LINK', { count: schedulerCount })}
-            >
-              <SchedulersIcon />
-              <span className={s.schedulersLabel}>{t('SCHEDULERS.TITLE')}</span>
-              <span className={s.schedulersCount}>{schedulerCount}</span>
-            </Link>
-          )}
-          <RateLimitBadge queue={queue} />
-          <WorkersBadge queue={queue} />
-          {!queue.readOnlyMode && (
+      <div className={s.card}>
+        <StatusSelector queue={queue} />
+        <JobFilters queue={queue} />
+      </div>
+
+      {showMetrics && (
+        <Suspense fallback={null}>
+          <QueueMetricsLazy queue={queue} />
+        </Suspense>
+      )}
+
+      <JobsTable
+        queue={queue}
+        status={status}
+        total={total}
+        loading={isTransitioning}
+        emptyText={filtering ? t('QUEUE.FILTERS.EMPTY_STATE') : t('QUEUE.EMPTY_STATE', { status })}
+        jobUrl={(job) => links.jobPage(queue.name, `${job.id}`, selectedStatus)}
+        rowActions={{
+          editData: (job) => withJob(job, () => modal.open('updateJobData')),
+          remove: (job) => jobActions.cleanJob(queue.name)(job),
+          retry: (job) => jobActions.retryJob(queue.name)(job),
+          promote: (job) => jobActions.promoteJob(queue.name)(job),
+          duplicate: (job) => withJob(job, () => modal.open('addJob')),
+          reschedule: (job) => withJob(job, () => modal.open('rescheduleJob')),
+          reprioritise: (job) => withJob(job, () => modal.open('reprioritiseJob')),
+        }}
+        toolbarActions={{
+          addJob: () => {
+            setEditJob(null);
+            modal.open('addJob');
+          },
+          cleanAll: (cleanStatus) => actions.cleanAll(queue.name, cleanStatus),
+          pause: () => actions.pauseQueue(queue.name),
+          resume: () => actions.resumeQueue(queue.name),
+          retryAll: () =>
+            actions.retryAll(queue.name, status === STATUSES.completed ? 'completed' : 'failed'),
+          promoteAll: () => actions.promoteAll(queue.name),
+        }}
+        moreMenu={
+          !queue.readOnlyMode && (
             <QueueDropdownActions
               queue={queue}
               actions={{
@@ -128,65 +153,26 @@ export const QueuePage = () => {
                 onRateLimit: () => modal.open('rateLimit'),
               }}
             />
-          )}
-        </StatusMenu>
-      </StickyHeader>
-      {showMetrics && (
-        <Suspense fallback={null}>
-          <QueueMetricsLazy queue={queue} />
-        </Suspense>
-      )}
-      <JobFilters queue={queue} />
-      {isTransitioning ? (
-        <Loader />
-      ) : queue.jobs.length > 0 ? (
-        queue.jobs.map((job) => (
-          <JobCard
-            key={job.id}
-            job={job}
-            jobUrl={links.jobPage(queue.name, `${job.id}`, selectedStatus)}
-            status={isLatest && job.isFailed ? STATUSES.failed : status}
-            actions={{
-              cleanJob: jobActions.cleanJob(queue.name)(job),
-              promoteJob: jobActions.promoteJob(queue.name)(job),
-              retryJob: jobActions.retryJob(queue.name)(job),
-              getJobLogs: jobActions.getJobLogs(queue.name)(job),
-              removeUnprocessedChildren: jobActions.removeUnprocessedChildren(queue.name)(job),
-              updateJobData: () => {
-                setEditJob(job);
-                modal.open('updateJobData');
-              },
-              duplicateJob: () => {
-                setEditJob(job);
-                modal.open('addJob');
-              },
-              rescheduleJob: () => {
-                setEditJob(job);
-                modal.open('rescheduleJob');
-              },
-              reprioritiseJob: () => {
-                setEditJob(job);
-                modal.open('reprioritiseJob');
-              },
-            }}
-            readOnlyMode={queue?.readOnlyMode}
-            allowRetries={(job.isFailed || queue.allowCompletedRetries) && queue.allowRetries}
-          />
-        ))
-      ) : (
-        <p
-          style={{
-            textAlign: 'center',
-            color: 'var(--muted-foreground)',
-            fontSize: '0.9rem',
-            marginTop: '2rem',
-          }}
-        >
-          {hasActiveJobFilters(jobFilters)
-            ? t('QUEUE.FILTERS.EMPTY_STATE')
-            : t('QUEUE.EMPTY_STATE', { status })}
-        </p>
-      )}
+          )
+        }
+        badges={
+          <>
+            {schedulerCount > 0 && (
+              <Link
+                className={s.schedulersLink}
+                to={links.jobSchedulers({ queueName: queue.name })}
+                aria-label={t('QUEUE.SCHEDULERS_LINK', { count: schedulerCount })}
+              >
+                <SchedulersIcon />
+                <span className={s.schedulersLabel}>{t('SCHEDULERS.TITLE')}</span>
+                <span className={s.schedulersCount}>{schedulerCount}</span>
+              </Link>
+            )}
+            <RateLimitBadge queue={queue} />
+            <WorkersBadge queue={queue} />
+          </>
+        }
+      />
       <Suspense fallback={null}>
         {modal.isMounted('addJob') && (
           <AddJobModalLazy

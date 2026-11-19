@@ -10,7 +10,11 @@
     "EXPAND_SIDEBAR": "Expand sidebar",
     "COLLAPSE_SIDEBAR": "Collapse sidebar",
     "METRICS_HISTORY": "Metrics history",
-    "SCHEDULERS": "Schedulers"
+    "SCHEDULERS": "Schedulers",
+    "FILTER": "Filter",
+    "RESIZE": "Drag to resize the menu (double click resets)",
+    "SORT": "Sort",
+    "SORT_NONE": "none"
   },
   "DASHBOARD": {
     "JOBS_COUNT_one": "{{count}} Job",
@@ -106,6 +110,7 @@
     "NA": "NA",
     "NO_PROGRESS": "No progress data available",
     "NO_ERRORS": "No errors recorded",
+    "FAILED_LABEL": "Failed",
     "NO_LOGS": "No logs available",
     "LOGS": {
       "FILTER_PLACEHOLDER": "Filters"
@@ -270,7 +275,15 @@
       "RESULT_one": "{{count}} matching job",
       "RESULT_other": "{{count}} matching jobs",
       "TRUNCATED": "stopped after reading {{scanned}} jobs, narrow the search to see the rest",
-      "EMPTY_STATE": "No jobs match these filters."
+      "EMPTY_STATE": "No jobs match these filters.",
+      "TIP_BEFORE": "Search is powered by ",
+      "TIP_MIDDLE": ", plus LIKE, IN and IS NULL. Check out the ",
+      "TIP_EXAMPLES": "examples",
+      "TIP_CLOSE": "Close"
+    },
+    "TABS": {
+      "ADD": "Add tab",
+      "CLOSE": "Close tab"
     }
   },
   "METRICS": {
@@ -561,5 +574,44 @@
       "LIMIT": "Max runs",
       "END_DATE": "End date"
     }
+  },
+  "MONITOR": {
+    "COLUMNS": {
+      "ACTIONS": "Actions",
+      "ID": "ID",
+      "STATUS": "Status",
+      "NAME": "Name",
+      "TIMESTAMP": "Timestamp",
+      "DELAY": "Delay",
+      "TIME": "Time",
+      "ATTEMPTS": "Attempts",
+      "PROGRESS": "Progress"
+    },
+    "STEP_QUEUED": "Queued",
+    "STEP_DELAYED": "Delayed",
+    "STEP_PROCESSED": "Processed",
+    "STEP_FINISHED": "Finished",
+    "STEP_FAILED": "Failed",
+    "MORE": "More",
+    "SAVE_JSON": "Save as JSON",
+    "EXPORT_JSON": "Export jobs as JSON",
+    "OPEN_JOB": "Open job",
+    "CONFIRM_RETRY_SELECTED": "Retry the selected jobs ({{count}})?",
+    "CONFIRM_DELETE_SELECTED": "Delete the selected jobs ({{count}})?",
+    "SELECTED": "Selected: {{count}}",
+    "RETRY_SELECTED": "Retry selected jobs",
+    "DELETE_SELECTED": "Delete selected jobs",
+    "CLEAN": "Clean",
+    "SELECT_ALL": "Select all",
+    "SELECT_JOB": "Select job {{id}}",
+    "DELETE_JOB": "Delete job",
+    "INFO": "Details",
+    "JOB_DATA": "Job Data",
+    "RETURN_VALUE": "Return Value",
+    "STACKTRACE": "Stacktrace",
+    "PER_PAGE": "Per page",
+    "RANGE": "{{from}}–{{to}} of {{count}}",
+    "PREV_PAGE": "Previous page",
+    "NEXT_PAGE": "Next page"
   }
 }

@@ -4,11 +4,16 @@
   top: 0;
   left: 0;
   width: 100%;
-  background: var(--card);
+  /* Bull Monitor's MUI AppBar: elevation 4 on the dark Paper. */
+  background: var(--appbar);
+  color: #fff;
   display: flex;
   height: var(--header-offset);
   box-sizing: border-box;
-  border-bottom: 1px solid var(--border);
+  box-shadow:
+    0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 10px 0px rgba(0, 0, 0, 0.12);
 }
 
 .logo {
@@ -17,19 +22,21 @@
   flex-shrink: 0;
   white-space: nowrap;
   text-align: start;
-  font-size: 1.05rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
+  /* The "BULL MONITOR" wordmark: condensed, heavy, all caps, white. */
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
   height: inherit;
   line-height: var(--header-height);
-  background-color: var(--sidebar);
-  color: var(--sidebar-foreground);
-  border-right: 1px solid var(--sidebar-border);
+  background-color: transparent;
+  color: #fff;
   z-index: 2;
   display: flex;
   align-items: center;
   gap: 0.15rem;
-  padding: 0 1.25rem;
+  padding: 0 24px;
   text-decoration: none;
   overflow: hidden;
 }
@@ -46,8 +53,8 @@
 }
 
 .logo > .img.default {
-  width: 1.2em;
-  margin-bottom: 0.2em;
+  /* Bull Monitor shows only its wordmark; a custom boardLogo still shows. */
+  display: none;
 }
 
 .content {
@@ -55,7 +62,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 var(--body-padding);
+  padding: 0 12px 0 0;
   overflow: hidden;
 }
 

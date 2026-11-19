@@ -41,14 +41,14 @@ it('does not render the metrics-history nav link when hasHistoryProvider is fals
   renderMenu(false);
 
   // Wait for the queues list to settle so we're not just observing a pre-render gap.
-  await waitFor(() => expect(screen.getByText('MENU.QUEUES')).toBeTruthy());
+  await screen.findByText('test');
   expect(screen.queryByText('MENU.METRICS_HISTORY')).toBeNull();
 });
 
 it('does not render the metrics-history nav link when hasHistoryProvider is undefined', async () => {
   renderMenu(undefined);
 
-  await waitFor(() => expect(screen.getByText('MENU.QUEUES')).toBeTruthy());
+  await screen.findByText('test');
   expect(screen.queryByText('MENU.METRICS_HISTORY')).toBeNull();
 });
 
@@ -82,23 +82,39 @@ it('collapses and reopens a queue group when its header is clicked', async () =>
   await waitFor(() => expect(screen.queryByText('invoices')).toBeTruthy());
 });
 
-it('drives expand-all and collapse-all from the current group state', async () => {
+it('shows a pill per status, zeros included, summed on groups, and a sort menu', async () => {
+  const counts = (completed: number, failed: number) => ({
+    ...makeQueue('x').counts,
+    completed,
+    failed,
+  });
   const getQueues = jest.fn(() =>
-    Promise.resolve<GetQueuesResponse>({ queues: [makeQueue('billing.invoices')] })
+    Promise.resolve<GetQueuesResponse>({
+      queues: [
+        makeQueue('Checkout-Order', { delimiter: undefined, counts: counts(1200, 3) }),
+        makeQueue('Checkout-Abandoned', { delimiter: undefined, counts: counts(5, 0) }),
+      ],
+    })
   );
-  const { Wrapper } = createWrapper({ api: { getQueues }, uiConfig: {} });
+  useSettingsStore.setState({ groupByPrefix: true });
+  const { Wrapper } = createWrapper({ api: { getQueues } });
   render(<Menu />, { wrapper: Wrapper });
 
-  const expand = await screen.findByTitle('MENU.EXPAND_ALL');
-  const collapse = screen.getByTitle('MENU.COLLAPSE_ALL');
-  expect(expand.hasAttribute('disabled')).toBe(true);
-  expect(collapse.hasAttribute('disabled')).toBe(false);
+  const pill = (root: Element, status: string) =>
+    root.querySelector(`li[title="${status}"]`)?.textContent;
 
-  fireEvent.click(collapse);
-  await waitFor(() => expect(screen.queryByText('invoices')).toBeNull());
-  expect(expand.hasAttribute('disabled')).toBe(false);
-  expect(collapse.hasAttribute('disabled')).toBe(true);
+  // The group sums its queues; every status the queues report has a pill, zero or not.
+  const group = (await screen.findByText('Checkout')).closest('button')!;
+  expect(pill(group, 'completed')).toBe('1205');
+  expect(pill(group, 'failed')).toBe('3');
+  expect(pill(group, 'waiting')).toBe('0');
 
-  fireEvent.click(expand);
-  await waitFor(() => expect(screen.queryByText('invoices')).toBeTruthy());
+  // Groups may start open; open it only if it is not. Leaves keep their full queue name.
+  if (!screen.queryByText('Checkout-Order')) fireEvent.click(group);
+  const order = (await screen.findByText('Checkout-Order')).closest('a')!;
+  expect(pill(order, 'failed')).toBe('3');
+  expect(pill(screen.getByText('Checkout-Abandoned').closest('a')!, 'failed')).toBe('0');
+
+  expect(screen.getByRole('button', { name: 'MENU.SORT' })).toBeTruthy();
+  useSettingsStore.setState({ groupByPrefix: undefined });
 });

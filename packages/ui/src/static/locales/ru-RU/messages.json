@@ -10,7 +10,11 @@
     "EXPAND_SIDEBAR": "Развернуть боковую панель",
     "COLLAPSE_SIDEBAR": "Свернуть боковую панель",
     "METRICS_HISTORY": "История метрик",
-    "SCHEDULERS": "Планировщики"
+    "SCHEDULERS": "Планировщики",
+    "FILTER": "Фильтр",
+    "RESIZE": "Перетащите, чтобы изменить ширину меню (двойной щелчок сбрасывает)",
+    "SORT": "Сортировка",
+    "SORT_NONE": "нет"
   },
   "DASHBOARD": {
     "JOBS_COUNT_one": "{{count}} задача",
@@ -108,6 +112,7 @@
     "NA": "Н/Д",
     "NO_PROGRESS": "Нет данных о прогрессе",
     "NO_ERRORS": "Ошибки не записаны",
+    "FAILED_LABEL": "Ошибка",
     "NO_LOGS": "Логи недоступны",
     "LOGS": {
       "FILTER_PLACEHOLDER": "Фильтры"
@@ -274,7 +279,15 @@
       "RESULT_many": "Найдено задач: {{count}}",
       "RESULT_other": "Найдено задач: {{count}}",
       "TRUNCATED": "остановлено после чтения {{scanned}} задач, уточните поиск, чтобы увидеть остальные",
-      "EMPTY_STATE": "Нет задач, подходящих под эти фильтры."
+      "EMPTY_STATE": "Нет задач, подходящих под эти фильтры.",
+      "TIP_BEFORE": "Поиск работает на ",
+      "TIP_MIDDLE": " с LIKE, IN и IS NULL. Смотрите ",
+      "TIP_EXAMPLES": "примеры",
+      "TIP_CLOSE": "Закрыть"
+    },
+    "TABS": {
+      "ADD": "Новая вкладка",
+      "CLOSE": "Закрыть вкладку"
     }
   },
   "METRICS": {
@@ -569,5 +582,44 @@
       "LIMIT": "Макс. запусков",
       "END_DATE": "Дата окончания"
     }
+  },
+  "MONITOR": {
+    "COLUMNS": {
+      "ACTIONS": "Действия",
+      "ID": "ID",
+      "STATUS": "Статус",
+      "NAME": "Имя",
+      "TIMESTAMP": "Создано",
+      "DELAY": "Задержка",
+      "TIME": "Время",
+      "ATTEMPTS": "Попытки",
+      "PROGRESS": "Прогресс"
+    },
+    "STEP_QUEUED": "В очереди",
+    "STEP_DELAYED": "Отложено",
+    "STEP_PROCESSED": "Обработано",
+    "STEP_FINISHED": "Завершено",
+    "STEP_FAILED": "Ошибка",
+    "MORE": "Ещё",
+    "SAVE_JSON": "Сохранить как JSON",
+    "EXPORT_JSON": "Экспорт заданий в JSON",
+    "OPEN_JOB": "Открыть задание",
+    "CONFIRM_RETRY_SELECTED": "Повторить выбранные задания ({{count}})?",
+    "CONFIRM_DELETE_SELECTED": "Удалить выбранные задания ({{count}})?",
+    "SELECTED": "Выбрано: {{count}}",
+    "RETRY_SELECTED": "Повторить выбранные",
+    "DELETE_SELECTED": "Удалить выбранные",
+    "CLEAN": "Очистить",
+    "SELECT_ALL": "Выбрать все",
+    "SELECT_JOB": "Выбрать задание {{id}}",
+    "DELETE_JOB": "Удалить задание",
+    "INFO": "Подробности",
+    "JOB_DATA": "Данные задания",
+    "RETURN_VALUE": "Возвращаемое значение",
+    "STACKTRACE": "Стек вызовов",
+    "PER_PAGE": "На странице",
+    "RANGE": "{{from}}–{{to}} из {{count}}",
+    "PREV_PAGE": "Предыдущая страница",
+    "NEXT_PAGE": "Следующая страница"
   }
 }

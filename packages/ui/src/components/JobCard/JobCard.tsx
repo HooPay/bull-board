@@ -39,6 +39,12 @@ interface JobCardProps {
 
 const greenStatuses = [STATUSES.active, STATUSES.completed] as const;
 
+/** The first line of the job's error, for the banner; the full text stays in the Error tab. */
+function failureSummary(job: AppJob): string {
+  const text = job.failedReason || job.stacktrace[0] || '';
+  return text.split('\n')[0].trim();
+}
+
 export const JobCard = ({
   job,
   status,
@@ -57,9 +63,15 @@ export const JobCard = ({
   const showCollapseExpandBtn = collapseJob && jobUrl;
   const idPrefix = /^\d+$/.test(`${job.id}`) ? '#' : '';
   const isShortId = `${job.id}`.length <= 8;
+  // A job that failed, seen from a tab that does not already say so (latest, delayed for a retry...).
+  const failed = job.isFailed && !greenStatuses.includes(status as any);
+  const detailsStatus = failed ? STATUSES.failed : status;
 
   return (
-    <Collapsible.Root open={isExpandedCard} render={<Card className={s.card} />}>
+    <Collapsible.Root
+      open={isExpandedCard}
+      render={<Card className={cn(s.card, failed && s.failedCard)} />}
+    >
       <div className={s.header}>
         <div className={s.titleWithLink}>
           {jobUrl ? (
@@ -144,6 +156,13 @@ export const JobCard = ({
         </div>
       </div>
 
+      {failed && (
+        <div className={s.failedBanner} role="alert" title={job.failedReason || undefined}>
+          <span className={s.failedLabel}>{t('JOB.FAILED_LABEL')}</span>
+          <span className={s.failedMessage}>{failureSummary(job)}</span>
+        </div>
+      )}
+
       <Collapsible.Panel render={<div className={s.details} />}>
         {!isMobile && (
           <div className={s.sideInfo}>
@@ -168,7 +187,7 @@ export const JobCard = ({
           )}
 
           <div className={s.content}>
-            <Details status={status} job={job} actions={actions} withTimeline={isMobile} />
+            <Details status={detailsStatus} job={job} actions={actions} withTimeline={isMobile} />
           </div>
           <Progress
             progress={job.progress}

@@ -8,7 +8,7 @@ export function useUIConfig() {
 
   useEffect(() => {
     if (uiConfig?.menu?.width) {
-      document.documentElement.style.setProperty('--menu-width', uiConfig.menu.width);
+      document.documentElement.style.setProperty('--menu-width-config', uiConfig.menu.width);
     }
   }, [uiConfig?.menu?.width]);
 

@@ -6,15 +6,27 @@
 }
 
 .actions li + li {
-  margin-inline-start: 0.5rem;
+  margin-inline-start: 0;
 }
 
-.button {
+/* MUI IconButton size="large": 48px round, white icon, translucent white hover. */
+.actions .button {
+  width: 48px;
+  height: 48px;
   font-size: 1rem;
-  padding: 0.65rem;
+  padding: 12px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow: none;
+  color: #fff;
+}
+
+.actions .button:hover {
+  background-color: rgba(255, 255, 255, 0.08);
 }
 
 .button > svg {
